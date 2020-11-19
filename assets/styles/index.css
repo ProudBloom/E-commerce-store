@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  height: 100px;
+  background-color: #209F3A;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header #logo {
+  margin-left: 2%;
+}
+
+header #logo img {
+  width: 100px;
+  height: 100px;
+}
+
+header .header__menu a {
+  padding: 15px;
+  color: white;
+  -webkit-transition: .2s ease-in;
+  transition: .2s ease-in;
+}
+
+header .header__menu a:hover {
+  color: #1c1c1c;
+  font-weight: 600;
+}
+
+header .header__menu #sale {
+  color: #e21919;
+  font-weight: bold;
+}
+
+header .header__menu #sale:hover {
+  color: #1c1c1c;
+}
+
+header .header__menu-basket {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  padding: 25px;
+}
+
+header .header__menu-basket .menu__wrapper {
+  margin: 0 15px 0 15px;
+  -webkit-transition: .1s ease-in;
+  transition: .1s ease-in;
+}
+
+header .header__menu-basket .menu__wrapper p {
+  cursor: pointer;
+  color: white;
+}
+
+header .header__menu-basket .menu__wrapper:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+main {
+  height: 150vh;
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+  background-color: #1c1c1c;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+/*# sourceMappingURL=index.css.map */

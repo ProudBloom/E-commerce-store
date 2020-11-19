@@ -1,0 +1,95 @@
+$primary-color: #209F3A;
+$black: #1c1c1c;
+$red: #e21919;
+
+@mixin menuItemHover 
+{
+    transition: .2s ease-in;
+    &:hover
+    {
+        color: $black;
+        font-weight: 600;
+    }
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+header
+{
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+    height: 100px;
+    background-color: $primary-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    #logo
+    {
+        margin-left: 2%;
+        img
+        {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .header__menu
+    {
+        a
+        {
+            padding: 15px;
+            color: white;
+            @include menuItemHover();
+        }
+        #sale 
+        {
+            color: $red;
+            font-weight: bold;
+            &:hover
+            {
+                color: $black;
+            }
+        }
+    }
+    .header__menu-basket
+    {
+        display: flex;
+        text-align: center;
+        padding: 25px;
+
+        .menu__wrapper
+        {
+            margin: 0 15px 0 15px;
+            transition: .1s ease-in;
+            p
+            {
+                cursor: pointer;
+                color: white;
+            }
+            &:hover{transform: scale(1.1);}
+        }
+    }
+}
+
+main
+{
+    height: 150vh;
+    width: 100%;
+}
+
+footer
+{
+    width: 100%;
+    background-color: $black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

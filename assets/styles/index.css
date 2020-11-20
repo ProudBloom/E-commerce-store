@@ -89,6 +89,9 @@ main .card__wrapper {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 main .card__wrapper .card {
@@ -100,11 +103,18 @@ main .card__wrapper .card {
   border-radius: 15px;
   -webkit-box-shadow: 12px 5px 15px rgba(0, 0, 0, 0.2);
           box-shadow: 12px 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 main .card__wrapper .card:hover {
   color: #1c1c1c;
   font-weight: 600;
+}
+
+main .card__wrapper .card .card__stars {
+  position: absolute;
+  right: 25px;
+  top: 10px;
 }
 
 main .card__wrapper .card h4 {

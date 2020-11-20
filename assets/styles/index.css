@@ -78,11 +78,100 @@ header .header__menu-basket .menu__wrapper:hover {
 }
 
 main {
+  font-family: 'Lato', sans-serif;
   height: 150vh;
   width: 100%;
 }
 
+main .card__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+main .card__wrapper .card {
+  -webkit-transition: .2s ease-in;
+  transition: .2s ease-in;
+  margin: 35px 50px;
+  width: 300px;
+  height: 400px;
+  border-radius: 15px;
+  -webkit-box-shadow: 12px 5px 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 12px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+main .card__wrapper .card:hover {
+  color: #1c1c1c;
+  font-weight: 600;
+}
+
+main .card__wrapper .card h4 {
+  padding: 25px 10px 5px 10px;
+  font-weight: 300;
+}
+
+main .card__wrapper .card h1 {
+  padding: 0 10px;
+}
+
+main .card__wrapper .card .card__price {
+  margin-top: 10%;
+  text-align: center;
+  font-weight: 300;
+}
+
+main .card__wrapper .card .card__image {
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+main .card__wrapper .card .card__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+main .card__wrapper .card .card__buttons button {
+  margin-top: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 120px;
+  text-align: left;
+  outline: none;
+  border: none;
+  background: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  -webkit-transition: .2s ease-in;
+  transition: .2s ease-in;
+}
+
+main .card__wrapper .card .card__buttons button:hover {
+  color: #1c1c1c;
+  font-weight: 600;
+}
+
+main .card__wrapper .card .card__buttons button img {
+  padding: 0 5px 0 0;
+}
+
+main .card__wrapper .card:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 footer {
+  font-family: 'Lato', sans-serif;
   width: 100%;
   background-color: #1c1c1c;
   color: white;

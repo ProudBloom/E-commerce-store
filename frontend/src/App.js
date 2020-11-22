@@ -1,5 +1,6 @@
 import React from 'react'
 import data from './data'
+import Product from './components/Product'
 
 function App() {
   return (
@@ -34,31 +35,9 @@ function App() {
             <div className="card__wrapper">
             {
                 data.products.map(product => 
-                (
-                    <div key={product._id} className="card">
-                        <div className="card__stars">
-                            <i className="fa fa-star" aria-hidden="true"></i>
-                            <i className="fa fa-star" aria-hidden="true"></i>
-                            <i className="fa fa-star" aria-hidden="true"></i>
-                            <i className="fa fa-star" aria-hidden="true"></i>
-                            <i className="fa fa-star-half" aria-hidden="true"></i>
-                        </div>
-                        <h4>{product.category}</h4>
-                        <h1>{product.name}</h1>
-                        <h1 className="card__price">{product.price}</h1>
-                        <img className="card__image" src={product.image} alt="nike predator shoe" />
-                        <div className="card__buttons">
-                            <button className="card__add-to-cart">
-                                <img src="../assets/icons/shopping_cart-small.svg" alt="shopping cart" />
-                                <p>Add to cart</p>
-                            </button>
-                            <button className="card__details">
-                                <img src="../assets/icons/details-small.svg" alt="magnifier" />
-                                <a href={`/product/${product._id}`}><p>Details</p></a>
-                            </button>
-                        </div>
-                    </div>
-                ))
+                {
+                    return(<Product key={product._id} item={product}></Product>);
+                })
             }
             </div>
         </main>

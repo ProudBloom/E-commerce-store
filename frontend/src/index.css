@@ -88,7 +88,6 @@ header .header__menu-basket .menu__wrapper:hover {
 
 main {
   font-family: 'Lato', sans-serif;
-  height: 150vh;
   width: 100%;
 }
 
@@ -146,6 +145,9 @@ main .card__wrapper .card .card__image {
   margin-left: auto;
   margin-right: auto;
   display: block;
+  width: 250px;
+  height: 140px;
+  object-fit: contain;
 }
 
 main .card__wrapper .card .card__buttons {
@@ -173,6 +175,11 @@ main .card__wrapper .card .card__buttons button {
   cursor: pointer;
   -webkit-transition: .2s ease-in;
   transition: .2s ease-in;
+}
+
+main .card__wrapper .card .card__buttons button a
+{
+  color: #1c1c1c;
 }
 
 main .card__wrapper .card .card__buttons button:hover {

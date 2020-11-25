@@ -1,0 +1,12 @@
+@import '../../variables';
+@import '../../mixins';
+
+footer
+{
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+    background-color: $black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

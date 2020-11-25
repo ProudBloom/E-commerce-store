@@ -1,7 +1,8 @@
 import React from 'react'
-import Rating from './Rating';
+import Rating from '../Rating/Rating';
+import './ProductCard'
 
-export default function Proudct(props) 
+export default function ProductCard(props) 
 {
     const {item} = props;
     return(

@@ -1,0 +1,64 @@
+@import '../../variables';
+@import '../../mixins';
+
+.wrapper
+{
+    width: 100%;
+    height: 90vh;
+    @include centerchildren();
+    font-family: 'Lato', sans-serif;
+
+    img
+    {
+        width: 40%;
+        height: 40%;
+        margin-left: 25%;
+        transform: rotate(-15deg);
+    }
+    .details
+    {
+        position: absolute;
+        top: 15%;
+        left: 10%;
+
+        .details__category
+        {
+            font-size: 2rem;
+            color: $secondary-color;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .details__name
+        {
+            font-size: 5rem;
+            color: $primary-color;
+            font-weight: 900;
+        }
+        .details__price
+        {
+            margin-top: 100px;
+            text-align: center;
+            font-size: 4rem;
+            color: $secondary-color;
+        }
+        .details__rating
+        {
+            font-size: 1.5rem;
+        }
+        button
+        {
+            margin-top: 150px;
+        }
+    }
+
+    // .description
+    // {
+    //     position: absolute;
+    //     bottom: 15%;
+    //     right: 5%;
+    //     font-size: 1.3rem;
+    //     width: 20%;
+    //     color: $black;
+    // }
+}

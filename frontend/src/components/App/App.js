@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import Home from '../../views/Home'
-import ProductDetails from '../../views/ProductDetails'
+import ProductDetails from '../../views/ProductDetails/ProductDetails'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 

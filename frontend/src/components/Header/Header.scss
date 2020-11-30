@@ -27,16 +27,13 @@ header
         {
             padding: 15px;
             color: white;
-            @include menuItemHover($black);
+            @include menuItemHover($secondary-color);
         }
         #sale 
         {
             color: $red;
             font-weight: bold;
-            &:hover
-            {
-                color: $black;
-            }
+            @include menuItemHover($secondary-color);
         }
     }
     .header__menu-basket

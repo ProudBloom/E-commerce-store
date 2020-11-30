@@ -11,7 +11,7 @@ const data =
             brand: 'Nike',
             rating: 4.5,
             numReviews: 10,
-            description: 'Red nike sneakers made of natural materials',
+            description: 'I tried both the main solution and the comment solution and they worked! Thank you! However, I propose that setting the height rather than the padding on the wrapper div as that makes more sense than margin-bottom when you read it.',
         },
         {
             _id: 2,

@@ -7,3 +7,10 @@
         font-weight: 600;
     }
 }
+
+@mixin centerchildren
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

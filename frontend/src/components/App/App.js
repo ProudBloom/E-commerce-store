@@ -13,7 +13,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route exact path="/"><Home /></Route>
-            <Route path="/item/1"><ProductDetails /></Route>
+            <Route path="/item/:id"><ProductDetails /></Route>
           </Switch>
         </BrowserRouter>
 

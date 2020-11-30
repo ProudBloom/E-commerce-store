@@ -1,9 +1,9 @@
-@mixin menuItemHover 
+@mixin menuItemHover ($color)
 {
     transition: .2s ease-in;
     &:hover
     {
-        color: $black;
+        color: $color;
         font-weight: 600;
     }
 }

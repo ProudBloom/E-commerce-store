@@ -1,6 +1,6 @@
 import React from 'react'
 import Rating from '../Rating/Rating';
-import './ProductCard'
+import './Product.scss'
 
 export default function ProductCard(props) 
 {

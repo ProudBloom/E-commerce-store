@@ -27,7 +27,7 @@ header
         {
             padding: 15px;
             color: white;
-            @include menuItemHover();
+            @include menuItemHover($black);
         }
         #sale 
         {

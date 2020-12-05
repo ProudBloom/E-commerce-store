@@ -34,9 +34,10 @@ export default function ProductDetails() {
                 <button>Add to cart</button>
             </div>
             <img src={product.image}></img>
-            {/* <div className='description'>
-                <p>{product.description}</p>
-            </div> */}
+            <a className="more-details">
+                <span>See more details</span>
+                <i className="fa fa-angle-down" />
+            </a>
         </div>
     )
 }

@@ -49,16 +49,30 @@
         button
         {
             margin-top: 150px;
+            align-self: center;
         }
     }
 
-    // .description
-    // {
-    //     position: absolute;
-    //     bottom: 15%;
-    //     right: 5%;
-    //     font-size: 1.3rem;
-    //     width: 20%;
-    //     color: $black;
-    // }
+    .more-details
+    {
+        color: $primary-color;
+        height: 65px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        .fa-angle-down
+        {
+            transform: scale(5.5);
+            cursor: pointer;
+            
+        }
+        &:hover
+        {
+            transform: scale(1.1);
+        }
+    }
 }

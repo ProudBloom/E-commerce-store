@@ -15,3 +15,13 @@ main
     font-family: 'Lato', sans-serif;
     width: 100%;
 }
+
+body::-webkit-scrollbar 
+{
+    width: 12px;
+}
+
+body::-webkit-scrollbar-thumb 
+{
+    background-color: $primary-color;
+}

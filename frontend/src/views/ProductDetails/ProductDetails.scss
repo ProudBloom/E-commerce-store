@@ -32,13 +32,12 @@
         .details__name
         {
             font-size: 5rem;
-            color: $primary-color;
+            color: $black;
             font-weight: 900;
         }
         .details__price
         {
             margin-top: 100px;
-            text-align: center;
             font-size: 4rem;
             color: $secondary-color;
         }
@@ -46,16 +45,18 @@
         {
             font-size: 1.5rem;
         }
-        button
+        .details__add-to-cart-btn
         {
             margin-top: 150px;
-            align-self: center;
+            @include buttonStyle($primary-color, $black, white)
         }
     }
 
     .more-details
     {
-        color: $primary-color;
+        color: $black;
+        bottom: 30px;
+        position: absolute;
         height: 65px;
         font-weight: bold;
         text-transform: uppercase;
@@ -72,7 +73,7 @@
         }
         &:hover
         {
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
     }
 }

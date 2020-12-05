@@ -31,13 +31,10 @@ export default function ProductDetails() {
                 </h1>
                 <h1 className='details__name'>{product.name}</h1>
                 <h2 className='details__price'>${product.price}</h2>
-                <button>Add to cart</button>
+                <button className="details__add-to-cart-btn"><span>Add to cart</span></button>
             </div>
             <img src={product.image}></img>
-            <a className="more-details">
-                <span>See more details</span>
-                <i className="fa fa-angle-down" />
-            </a>
+            <a className="more-details"><i className="fa fa-angle-down" /></a>
         </div>
     )
 }

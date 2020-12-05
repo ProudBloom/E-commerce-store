@@ -14,3 +14,43 @@
     justify-content: space-around;
     align-items: center;
 }
+
+@mixin buttonStyle($foreground-color, $background-color, $text-color) 
+{
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    color: $text-color;
+    background-color: $background-color;
+    padding: 17px 60px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.4);
+
+    span 
+    {
+        position: relative; 
+        z-index: 1;
+    }
+    &:after 
+    {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 490%;
+        width: 140%;
+        background: $foreground-color;
+        transition: all .3s ease-in-out;
+        transform: translateX(-95%) translateY(-25%) rotate(45deg);
+    }
+    &:hover:after 
+    {
+        transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    }
+}

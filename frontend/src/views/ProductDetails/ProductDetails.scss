@@ -10,8 +10,8 @@
 
     img
     {
-        width: 40%;
-        height: 40%;
+        max-width: 40%;
+        max-height: 40%;
         margin-left: 25%;
         transform: rotate(-15deg);
     }
@@ -37,7 +37,7 @@
         }
         .details__price
         {
-            margin-top: 100px;
+            margin-top: 50px;
             font-size: 4rem;
             color: $secondary-color;
         }
@@ -47,7 +47,7 @@
         }
         .details__add-to-cart-btn
         {
-            margin-top: 150px;
+            margin-top: 250px;
             @include buttonStyle($primary-color, $black, white)
         }
     }
@@ -64,6 +64,7 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        transition: .1s ease;
 
         .fa-angle-down
         {

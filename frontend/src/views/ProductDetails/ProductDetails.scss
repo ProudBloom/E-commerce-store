@@ -1,7 +1,12 @@
 @import '../../variables';
 @import '../../mixins';
 
-.wrapper
+.main-wrapper{
+    flex-direction: column;
+    @include centerchildren();
+}
+
+.product-wrapper
 {
     width: 100%;
     height: 90vh;
@@ -77,4 +82,9 @@
             transform: scale(1.2);
         }
     }
+}
+
+#prod-description
+{
+    height: 50vh;
 }

@@ -10,6 +10,11 @@
     box-sizing: border-box;
 }
 
+html 
+{
+    scroll-behavior: smooth;
+}
+
 main
 {
     font-family: 'Lato', sans-serif;

@@ -1,0 +1,37 @@
+@import '../../mixins.scss';
+@import '../../variables';
+
+.err-wrapper
+{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #eb4e57;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lato';
+
+    .err-heading
+    {
+        color: white;
+        font-size: 3.6rem;
+        text-align: center;
+    }
+
+    .err-button
+    {
+        margin-top: 4.0rem;
+        color: $black;
+        transition: .2s ease-in;
+        font-weight: 700;
+
+        i
+        { margin-right: 10px; }
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+}

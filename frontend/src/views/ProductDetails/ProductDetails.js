@@ -1,9 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
-import ProductDescription from '../../components/PrductDescription/ProductDescription';
-import data from '../../data'
-import './ProductDetails.scss'
+import data from '../../data';
+import './ProductDetails.scss';
 
 export default function ProductDetails() {
     let { id } = useParams();

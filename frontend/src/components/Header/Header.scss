@@ -13,6 +13,7 @@ header
 
     #logo
     {
+        z-index: 15;
         margin-left: 2%;
         img
         {
@@ -23,6 +24,7 @@ header
 
     .header__menu
     {
+        z-index: 15;
         a
         {
             padding: 15px;
@@ -38,6 +40,7 @@ header
     }
     .header__menu-basket
     {
+        z-index: 15;
         display: flex;
         text-align: center;
         padding: 25px;

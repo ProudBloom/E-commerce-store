@@ -2,7 +2,7 @@ import React from 'react'
 import data from '../data'
 import ProductCard from '../components/ProductCard/ProductCard'
 
-export default function Home() {
+export default function ProudctsList() {
     return (
         <main>
             <div className="card__wrapper">

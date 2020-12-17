@@ -6,12 +6,12 @@ export default function Header() {
         <header>
             <a href="/" id="logo"><img src="../assets/img/Logo.svg" alt="Logo" /></a>
             <div className="header__menu">
-                <a href="/">Mens</a>
-                <a href="/">Ladies</a>
-                <a href="/">Kids</a>
-                <a href="/">Sportswear</a>
-                <a href="/">Brands</a>
-                <a href="/" id="sale">SALE%</a>
+                <a href="/products-list">Mens</a>
+                <a href="/products-list">Ladies</a>
+                <a href="/products-list">Kids</a>
+                <a href="/products-list">Sportswear</a>
+                <a href="/products-list">Brands</a>
+                <a href="/products-list" id="sale">SALE%</a>
             </div>
             <div className="header__menu-basket">
                 <div className="menu__wrapper">

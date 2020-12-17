@@ -1,0 +1,23 @@
+@import '../../variables';
+@import '../../mixins';
+
+.home__background
+{
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    width: 100vw;
+    height: 100vh;
+    background: url('../../assets/img/main-bg.jpg') no-repeat center fixed;
+    background-size: cover;
+
+    .home__copyright
+    {
+        font-family: 'Lato';
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+        color: $secondary-color;
+        font-weight: bold;
+    }
+}

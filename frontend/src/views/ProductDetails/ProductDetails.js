@@ -6,6 +6,7 @@ import './ProductDetails.scss';
 
 export default function ProductDetails() {
     let { id } = useParams();
+    // eslint-disable-next-line eqeqeq
     const product = data.products.find(item => item._id == id);
     
     if(!product)
@@ -35,7 +36,7 @@ export default function ProductDetails() {
                     <p>{product.inStock > 0 ? (<span className="details__in-stock">In stock</span>) : (<span className="details__not-in-stock">Not available</span>)}</p>
                     <button className="details__add-to-cart-btn"><span>Add to cart</span></button>
                 </div>
-                <img src={product.image}></img>
+                <img src={product.image} alt="Product"></img>
                 <a className="more-details" href="#prod-description"><i className="fa fa-angle-down" /></a>
             </div>
             {/* TODO: apply more dteailed description as object and style correspondingly (description: {someInfo: 'info1', someOther: 'info2'})*/}

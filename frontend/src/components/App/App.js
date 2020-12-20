@@ -1,6 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
-import ProudctsList from '../../views/ProductsList'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import ProudctsList from '../../views/ProductstList/ProductsList'
 import ProductDetails from '../../views/ProductDetails/ProductDetails'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'

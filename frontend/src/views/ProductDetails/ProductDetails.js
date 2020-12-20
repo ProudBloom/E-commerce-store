@@ -1,21 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
-import data from '../../data';
+import { detailsProductAction } from '../../actions/productActions';
+import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox';
+import LoadingBox from '../../components/LoadingBox/LoadingBox';
 import './ProductDetails.scss';
 
 export default function ProductDetails() {
+
+    const dispatch = useDispatch();
     let { id } = useParams();
-    // eslint-disable-next-line eqeqeq
-    const product = data.products.find(item => item._id == id);
-    
-    if(!product)
-    {
-        return(<ErrorComponent />);
-    }
+    const productId = id;
+    const productDetails = useSelector((state) => state.productDetails);
+    const { isLoading, error, product } = productDetails;
+
+    useEffect(() => {
+        dispatch(detailsProductAction(productId));
+    }, [dispatch, productId]);
 
     return (
-        <div className="main-wrapper">
+        <div>
+        {
+            isLoading ? (<LoadingBox></LoadingBox>) 
+            : error ? (<ErrorMessageBox err={error}/>)
+            : <div className="main-wrapper">
             <div className='product-wrapper'>
                 <div className='details'>
                     <h1 className='details__category'>
@@ -60,6 +68,8 @@ export default function ProductDetails() {
                     <p>{product.description}</p>
                 </div>
             </div>
+        </div>
+        }
         </div>
     )
 }

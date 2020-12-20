@@ -10,10 +10,11 @@ function App() {
   return (
       <div>
         <Header />
+        
         <BrowserRouter>
           <Switch>
             <Route exact path="/"><HomePage /></Route>
-            {/* TODO: implement different JSON objects for men, women, kids etc. */}
+            {/* TODO: implement different JSON objects for men, wemen, kids etc. */}
             <Route path="/products-list"><ProudctsList /></Route>
             <Route path="/item/:id"><ProductDetails /></Route>
           </Switch>

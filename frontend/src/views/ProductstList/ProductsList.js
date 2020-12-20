@@ -13,7 +13,7 @@ export default function ProudctsList() {
 
     useEffect(() => {
         dispatch(listProductsAction());
-    }, []);
+    }, [dispatch]);
 
     return (
         <main>

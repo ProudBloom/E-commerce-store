@@ -4,7 +4,15 @@
     &:hover
     {
         color: $color;
-        font-weight: 600;
+    }
+}
+
+@mixin submenuItemHover ()
+{
+    transition: .2s ease-in;
+    &:hover
+    {
+        font-weight: 700;
     }
 }
 
@@ -117,7 +125,7 @@
 
     &:hover
     {
-        transform: scale(1.1);
+        transform: scale(1.05);
         i
         {
             transform: translateX(30px);

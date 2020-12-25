@@ -37,6 +37,7 @@
         .details__name
         {
             font-size: 5rem;
+            line-height: 4.8rem;
             color: $black;
             font-weight: 900;
         }
@@ -50,10 +51,18 @@
         {
             font-size: 1.5rem;
         }
-        .details__add-to-cart-btn
+        .details__btn-wrapper
         {
+            //TODO: Think about a better style
+            @include centerchildrenColumn();
             margin-top: 250px;
-            @include buttonStyle($secondary-color, $primary-color);
+            height: 150px;
+            width: 200px;
+            
+            .details__add-to-cart-btn
+            {
+                @include buttonStyle($secondary-color, $primary-color);
+            }
         }
     }
 
@@ -128,3 +137,29 @@
         }
     }
 }
+
+.counter
+{
+    margin-bottom: 10px;
+    width: 120px;
+    @include centerchildren();
+
+    i
+    {
+        font-size: 2rem;
+        &:hover
+        {
+            cursor: pointer;
+        }
+    }
+    .content__wrapper
+    {
+        @include centerchildren();
+        border-radius: 10px;
+        width: 45px;
+        height: 45px;
+        background-color: rgba($secondary-color, .6);
+    }
+}
+
+:first-letter { margin-left: -0.08em; } //First letter allign trick (when dealing with different font sizes)

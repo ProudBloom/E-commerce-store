@@ -6,6 +6,7 @@ export default function Header() {
         <header>
             <a href="/" id="logo"><img src="../assets/img/Logo.svg" alt="Logo" /></a>
             <div className="header__menu">
+                {/* TODO: Add home item */}
                 <a href="/products-list">Mens</a>
                 <a href="/products-list">Ladies</a>
                 <a href="/products-list">Kids</a>

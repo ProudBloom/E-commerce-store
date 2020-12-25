@@ -1,22 +1,34 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { detailsProductAction } from '../../actions/productActions';
 import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox';
 import LoadingBox from '../../components/LoadingBox/LoadingBox';
 import './ProductDetails.scss';
 
-export default function ProductDetails() {
+export default function ProductDetails(props) {
 
     const dispatch = useDispatch();
-    let { id } = useParams();
-    const productId = id;
+    const productId = props.match.params.id;
     const productDetails = useSelector((state) => state.productDetails);
     const { isLoading, error, product } = productDetails;
+
+    var quantity = 1;
 
     useEffect(() => {
         dispatch(detailsProductAction(productId));
     }, [dispatch, productId]);
+    
+    const subtractQuantity = () => {
+        
+    }
+
+    const addQuantity = () => {
+       
+    }
+
+    const addToCartHandler = () => {
+        props.history.push(`/cart/${productId}?qty=${quantity}`);
+    }
 
     return (
         <div>
@@ -42,7 +54,18 @@ export default function ProductDetails() {
                     <h1 className='details__name'>{product.name}</h1>
                     <h2 className='details__price'>{product.price}</h2>
                     <p>{product.inStock > 0 ? (<span className="details__in-stock">In stock</span>) : (<span className="details__not-in-stock">Not available</span>)}</p>
-                    <button className="details__add-to-cart-btn"><span>Add to cart</span></button>
+                    {
+                        product.inStock > 0 ?
+                        ( <div className="details__btn-wrapper">
+                            <div className="counter">
+                                <i onClick={subtractQuantity()} className="fa fa-angle-left"></i>
+                                <span className="content__wrapper"><p className="content">{quantity}</p></span>
+                                <i onClick={addQuantity()} className="fa fa-angle-right"></i>
+                            </div>
+                            <button onClick={() => addToCartHandler()} className="details__add-to-cart-btn"><span>Add to cart</span></button>
+                        </div>)
+                        : (<span></span>)
+                    }
                 </div>
                 <img src={product.image} alt="Product"></img>
                 <a className="more-details" href="#prod-description"><i className="fa fa-angle-down" /></a>

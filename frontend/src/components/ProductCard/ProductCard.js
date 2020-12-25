@@ -5,6 +5,7 @@ import './Product.scss'
 export default function ProductCard(props) 
 {
     const {item} = props;
+    
     return(
         <div key={item._id} className="card">
             <h4>{item.category}</h4>

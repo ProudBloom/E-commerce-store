@@ -53,7 +53,7 @@
         .details__add-to-cart-btn
         {
             margin-top: 250px;
-            @include buttonStyle($primary-color, $black, white)
+            @include buttonStyle($secondary-color, $primary-color);
         }
     }
 

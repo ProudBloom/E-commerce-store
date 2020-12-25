@@ -15,49 +15,116 @@
     align-items: center;
 }
 
-@mixin buttonStyle($foreground-color, $background-color, $text-color) 
+@mixin centerchildrenRow
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin centerchildrenColumn
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@mixin buttonStyle($background-color, $text-color) 
+{
+    outline: none;
+    background: none;
     border: none;
     cursor: pointer;
-    text-align: center;
-    text-transform: uppercase;
-    outline: none;
-    overflow: hidden;
     position: relative;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
+    padding: 19px 22px;
+    transition: all .2s ease;
     color: $text-color;
-    background-color: $background-color;
-    border-radius: 10px;
-    padding: 17px 60px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,.4);
-    transition: .3s ease-in;
 
-    &:hover 
-    {
-        transform: scale(1.1);
-        box-shadow: 15px 15px 20px rgba(0,0,0,.4);
-    }
-    span 
-    {
-        position: relative; 
-        z-index: 9999;
-    }
-    &:after 
+    &:before
     {
         content: "";
         position: absolute;
-        left: 0;
         top: 0;
-        height: 490%;
-        width: 140%;
-        background: $foreground-color;
-        transition: all .3s ease-in-out;
-        transform: translateX(-95%) translateY(-25%) rotate(45deg);
+        left: 0;
+        display: block;
+        border-radius: 28px;
+        background: rgba($background-color, .5);
+        width: 56px;
+        height: 56px;
+        transition: all .3s ease;
     }
-    &:hover:after 
+    span
     {
-        transform: translateX(-9%) translateY(-25%) rotate(45deg);
+        text-transform: uppercase;
+        font-weight: 700;
+        position: relative;
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: .25em;
+        vertical-align: middle;
+    }
+    &:hover
+    {
+        &:before
+        {
+            width: 100%;
+            background: rgba($background-color,1);
+            svg
+            {
+                transform: translateX(0);
+            }
+        }
+        &:active 
+        {
+            transform: scale(.9)
+        }
+    }
+}
+
+@mixin buttonStyleActive($background-color, $text-color) 
+{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 19px 22px;
+    transition: all .2s ease;
+    color: $text-color;
+    background: $background-color;
+    border-radius: 28px;
+    width: 350px;
+    text-align: center;
+
+    span
+    {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: .25em;
+    }
+
+    i
+    {
+        font-size: 18px;
+        font-weight: 600;
+        position: relative;
+        top: 0;
+        margin-left: 10px;
+        color: $text-color;
+        transform: translateX(15px);
+        transition: all .3s ease;
+    }
+
+    &:hover
+    {
+        transform: scale(1.1);
+        i
+        {
+            transform: translateX(30px);
+        }
+        &:active 
+        {
+            transform: scale(.9)
+        }
     }
 }

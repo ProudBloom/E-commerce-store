@@ -13,11 +13,48 @@
 
     .home__copyright
     {
-        font-family: 'Lato';
+        font-family: 'Lato', sans-serif;
         position: absolute;
         bottom: 25px;
         right: 25px;
         color: $secondary-color;
         font-weight: bold;
+    }
+}
+
+.home__heading
+{
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    height: 100%;
+    width: 100%;
+    @include centerchildrenColumn();
+
+    h1 
+    {
+        font-size: 72px;
+        font-weight: 300;
+    }
+
+    hr
+    {
+        width: 900px;
+        margin-bottom: 20px;
+    }
+
+    h3
+    {
+        font-size: 24px;
+        font-weight: 300;
+    }
+
+    .heading__button
+    {
+        @include buttonStyleActive($secondary-color, $primary-color);
+        margin-top: 40px;
+        span 
+        {
+            padding-bottom: 5px;
+        }
     }
 }

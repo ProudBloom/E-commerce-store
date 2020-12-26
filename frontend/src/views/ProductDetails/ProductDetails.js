@@ -12,7 +12,7 @@ export default function ProductDetails(props) {
     const productDetails = useSelector((state) => state.productDetails);
     const { isLoading, error, product } = productDetails;
 
-    var quantity = 1;
+    var quantity = 11;
 
     useEffect(() => {
         dispatch(detailsProductAction(productId));

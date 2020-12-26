@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Rating from '../Rating/Rating';
 import './Product.scss'
 
@@ -11,9 +12,9 @@ export default function ProductCard(props)
             <h4>{item.category}</h4>
             <h1>{item.name}</h1>
             <h1 className="card__price">{item.price}</h1>
-            <a href={`/item/${item._id}`}>
+            <Link to={`/item/${item._id}`}>
                 <img className="card__image" src={item.image} alt="nike predator shoe" />
-            </a>
+            </Link>
             <div className="card__buttons">
                 <button className="card__add-to-cart">
                     <img src="../assets/icons/shopping_cart-small.svg" alt="shopping cart" />
@@ -21,7 +22,7 @@ export default function ProductCard(props)
                 </button>
                 <button className="card__details">
                     <img src="../assets/icons/details-small.svg" alt="magnifier" />
-                    <a href={`/item/${item._id}`}><p>Details</p></a>
+                    <Link to={`/item/${item._id}`}><p>Details</p></Link>
                 </button>
                 <Rating rating={item.rating}></Rating>
             </div>

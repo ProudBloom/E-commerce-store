@@ -12,7 +12,7 @@ export default function Header() {
         <header>
             <Link to="/" id="logo"><img src="../assets/img/Logo.svg" alt="Logo" /></Link>
             <div className="header__menu">
-                {/* TODO: Add home item */}
+                <Link to="/">Home</Link>
                 <Link to="/products-list">Mens</Link>
                 <Link to="/products-list">Ladies</Link>
                 <Link to="/products-list">Kids</Link>

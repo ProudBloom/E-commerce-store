@@ -16,7 +16,7 @@ export default function ProductCard(props)
                 <img className="card__image" src={item.image} alt="nike predator shoe" />
             </Link>
             <div className="card__buttons">
-                <button className="card__add-to-cart">
+                <button onClick={() => console.log('Add to cart') /*TODO: implement this*/} className="card__add-to-cart">
                     <img src="../assets/icons/shopping_cart-small.svg" alt="shopping cart" />
                     <p>Add to cart</p>
                 </button>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { detailsProductAction } from '../../actions/productActions';
 import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox';
@@ -12,18 +12,25 @@ export default function ProductDetails(props) {
     const productDetails = useSelector((state) => state.productDetails);
     const { isLoading, error, product } = productDetails;
 
-    var quantity = 11;
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
         dispatch(detailsProductAction(productId));
     }, [dispatch, productId]);
     
     const subtractQuantity = () => {
-        
+        if(quantity >= 1) {
+            setQuantity(quantity - 1);
+        }
     }
 
     const addQuantity = () => {
-       
+        if(quantity < product.inStock) {
+            setQuantity(quantity + 1);
+        }
+        else {
+            alert('Cannot add more items than the stock amount');
+        }
     }
 
     const addToCartHandler = () => {
@@ -58,9 +65,10 @@ export default function ProductDetails(props) {
                         product.inStock > 0 ?
                         ( <div className="details__btn-wrapper">
                             <div className="counter">
-                                <i onClick={subtractQuantity()} className="fa fa-angle-left"></i>
-                                <span className="content__wrapper"><p className="content">{quantity}</p></span>
-                                <i onClick={addQuantity()} className="fa fa-angle-right"></i>
+                                <i onClick={subtractQuantity} className="fa fa-angle-left"></i>
+                                {/* TODO: Implement as a input field */}
+                                <p type="text" className="content__wrapper">{quantity}</p>
+                                <i onClick={addQuantity} className="fa fa-angle-right"></i>
                             </div>
                             <button onClick={() => addToCartHandler()} className="details__add-to-cart-btn"><span>Add to cart</span></button>
                         </div>)

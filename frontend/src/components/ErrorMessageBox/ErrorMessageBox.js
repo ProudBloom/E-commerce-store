@@ -3,9 +3,10 @@ import './ErrorMessageBox.scss'
 
 export default function ErrorMessageBox(props) {
     return (
-        <div className="error__background">
-            <i className="fa fa-exclamation-circle"></i>
-            <p className="error__pragraph">{props.err}</p>
+        <div className="err-wrapper">
+            <i className="fa fa-exclamation-circle err-icon"></i>
+            <p className="err-heading">{props.err}</p>
+            <a className="err-button" href="/"><i className="fa fa-arrow-left" aria-hidden="true"></i>Back to main site</a>
         </div>
     )
 }

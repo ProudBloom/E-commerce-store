@@ -17,21 +17,6 @@ export default function ProductDetails(props) {
     useEffect(() => {
         dispatch(detailsProductAction(productId));
     }, [dispatch, productId]);
-    
-    const subtractQuantity = () => {
-        if(quantity >= 1) {
-            setQuantity(quantity - 1);
-        }
-    }
-
-    const addQuantity = () => {
-        if(quantity < product.inStock) {
-            setQuantity(quantity + 1);
-        }
-        else {
-            alert('Cannot add more items than the stock amount');
-        }
-    }
 
     const addToCartHandler = () => {
         props.history.push(`/cart/${productId}?qty=${quantity}`);
@@ -59,16 +44,21 @@ export default function ProductDetails(props) {
                         </span>
                     </h1>
                     <h1 className='details__name'>{product.name}</h1>
-                    <h2 className='details__price'>{product.price}</h2>
+                    <h2 className='details__price'>{product.price}zł</h2>
                     <p>{product.inStock > 0 ? (<span className="details__in-stock">In stock</span>) : (<span className="details__not-in-stock">Not available</span>)}</p>
                     {
                         product.inStock > 0 ?
                         ( <div className="details__btn-wrapper">
                             <div className="counter">
-                                <i onClick={subtractQuantity} className="fa fa-angle-left"></i>
-                                {/* TODO: Implement as a input field */}
-                                <p type="text" className="content__wrapper">{quantity}</p>
-                                <i onClick={addQuantity} className="fa fa-angle-right"></i>
+                                <p>QTY: </p>
+                                <select className="content__wrapper" value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+                                    {
+                                        [...Array(product.inStock).keys()].map((x) => (
+                                            <option key={x+1} value={x+1}>{x+1}</option>
+                                        ))
+                                    }
+                                </select>
+                                <i className="fa fa-angle-right"></i>
                             </div>
                             <button onClick={() => addToCartHandler()} className="details__add-to-cart-btn"><span>Add to cart</span></button>
                         </div>)
@@ -81,7 +71,7 @@ export default function ProductDetails(props) {
             {/* TODO: apply more dteailed description as object and style correspondingly (description: {someInfo: 'info1', someOther: 'info2'})*/}
             <div className="description-wrapper">
                 <div className="reviews">
-                {/* TODO: implement user reviews (UserName: 'text of review', rating)*/}
+                {/* TODO: implement user reviews component (UserName: 'text of review', rating)*/}
                 {/* TODO: use BEM convention here*/}
                     <ul>
                         <li>Review</li>
@@ -95,6 +85,7 @@ export default function ProductDetails(props) {
                     </ul>
                 </div>
                 <div id="prod-description">
+                    {/* TODO: implement description component */}
                     <h2>Description</h2>
                     <p>{product.description}</p>
                 </div>

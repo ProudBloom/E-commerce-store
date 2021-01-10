@@ -1,26 +1,42 @@
+@import '../../mixins.scss';
 @import '../../variables';
-@import '../../mixins';
 
-.error__background
+.err-wrapper
 {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0%;
-    z-index: 100;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
     background-color: $red;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Lato';
+    z-index: 20;
 
-    .error__pragraph
+    .err-heading
     {
-        font-size: 24px;
         color: white;
+        font-size: 3.6rem;
+        text-align: center;
     }
 
-    i
+    .err-button
+    {
+        margin-top: 4.0rem;
+        color: $black;
+        transition: .2s ease-in;
+        font-weight: 700;
+
+        i
+        { margin-right: 10px; }
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+
+    .err-icon
     {
         margin-bottom: 50px;
         font-size: 150px;

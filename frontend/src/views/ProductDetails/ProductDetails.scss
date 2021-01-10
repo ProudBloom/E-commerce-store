@@ -141,24 +141,66 @@
 .counter
 {
     margin-bottom: 10px;
-    width: 120px;
+    width: 196px;
     @include centerchildren();
+
+    .content__wrapper
+    {
+        width: 45px;
+        height: 40px;
+        border-radius: 28px;
+        font-weight: bold;
+        background-color: rgba(226, 176, 90, 0.5);
+        border: none;
+        color: $primary-color;
+        padding: 10px;
+        outline: none;
+        transition: all .2s ease-in;
+        appearance: none;
+        cursor: pointer;
+
+        option
+        {
+            border-radius: 15px;
+            font-weight: bold;
+        }
+    }
 
     i
     {
-        font-size: 2rem;
-        &:hover
-        {
-            cursor: pointer;
-        }
+        position: relative;
+        right: 50px;
+        font-size: 1.2rem;
+        color: $primary-color;
+        pointer-events: none;
+        padding-left: 5px;
+        transition: all .2s ease-in;
     }
-    .content__wrapper
+
+    p
     {
-        @include centerchildren();
-        border-radius: 10px;
-        width: 45px;
-        height: 45px;
-        background-color: rgba($secondary-color, .6);
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-weight: 700;
+        color: $primary-color;
+        line-height: 18px;
+        letter-spacing: .25em;
+    }
+
+    &:hover 
+    {
+        select 
+        {
+            width: 100px;
+            background-color: $secondary-color;
+        }
+        i
+        {
+            transform: rotate(90deg);
+            right: 35px;
+            background-color: $secondary-color;
+        }
     }
 }
 

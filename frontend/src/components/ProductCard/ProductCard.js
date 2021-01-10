@@ -11,7 +11,7 @@ export default function ProductCard(props)
         <div key={item._id} className="card">
             <h4>{item.category}</h4>
             <h1>{item.name}</h1>
-            <h1 className="card__price">{item.price}</h1>
+            <h1 className="card__price">{item.price}zł</h1>
             <Link to={`/item/${item._id}`}>
                 <img className="card__image" src={item.image} alt="nike predator shoe" />
             </Link>

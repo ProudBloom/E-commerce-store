@@ -50,7 +50,6 @@ export default function ProductDetails(props) {
                         product.inStock > 0 ?
                         ( <div className="details__btn-wrapper">
                             <div className="counter">
-                                <p>QTY: </p>
                                 <select className="content__wrapper" value={quantity} onChange={(e) => setQuantity(e.target.value)}>
                                     {
                                         [...Array(product.inStock).keys()].map((x) => (

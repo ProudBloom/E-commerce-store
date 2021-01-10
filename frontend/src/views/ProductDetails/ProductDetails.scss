@@ -142,12 +142,10 @@
 {
     margin-bottom: 10px;
     width: 196px;
-    @include centerchildren();
 
     .content__wrapper
     {
-        width: 45px;
-        height: 40px;
+        width: 50px;
         border-radius: 28px;
         font-weight: bold;
         background-color: rgba(226, 176, 90, 0.5);
@@ -169,7 +167,7 @@
     i
     {
         position: relative;
-        right: 50px;
+        right: 20px;
         font-size: 1.2rem;
         color: $primary-color;
         pointer-events: none;
@@ -177,28 +175,17 @@
         transition: all .2s ease-in;
     }
 
-    p
-    {
-        font-size: 16px;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-weight: 700;
-        color: $primary-color;
-        line-height: 18px;
-        letter-spacing: .25em;
-    }
-
     &:hover 
     {
         select 
         {
-            width: 100px;
+            width: 90%;
             background-color: $secondary-color;
         }
         i
         {
             transform: rotate(90deg);
-            right: 35px;
+            right: 20px;
             background-color: $secondary-color;
         }
     }

@@ -37,6 +37,7 @@
         .details__name
         {
             font-size: 5rem;
+            line-height: 4.8rem;
             color: $black;
             font-weight: 900;
         }
@@ -50,10 +51,18 @@
         {
             font-size: 1.5rem;
         }
-        .details__add-to-cart-btn
+        .details__btn-wrapper
         {
+            //TODO: Think about a better style
+            @include centerchildrenColumn();
             margin-top: 250px;
-            @include buttonStyle($primary-color, $black, white)
+            height: 150px;
+            width: 200px;
+            
+            .details__add-to-cart-btn
+            {
+                @include buttonStyle($secondary-color, $primary-color);
+            }
         }
     }
 
@@ -128,3 +137,58 @@
         }
     }
 }
+
+.counter
+{
+    margin-bottom: 10px;
+    width: 196px;
+
+    .content__wrapper
+    {
+        width: 50px;
+        border-radius: 28px;
+        font-weight: bold;
+        background-color: rgba(226, 176, 90, 0.5);
+        border: none;
+        color: $primary-color;
+        padding: 10px;
+        outline: none;
+        transition: all .2s ease-in;
+        appearance: none;
+        cursor: pointer;
+
+        option
+        {
+            border-radius: 15px;
+            font-weight: bold;
+        }
+    }
+
+    i
+    {
+        position: relative;
+        right: 20px;
+        font-size: 1.2rem;
+        color: $primary-color;
+        pointer-events: none;
+        padding-left: 5px;
+        transition: all .2s ease-in;
+    }
+
+    &:hover 
+    {
+        select 
+        {
+            width: 90%;
+            background-color: $secondary-color;
+        }
+        i
+        {
+            transform: rotate(90deg);
+            right: 20px;
+            background-color: $secondary-color;
+        }
+    }
+}
+
+:first-letter { margin-left: -0.08em; } //First letter allign trick (when dealing with different font sizes)

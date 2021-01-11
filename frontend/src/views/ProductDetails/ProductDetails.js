@@ -1,21 +1,33 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
-import ErrorComponent from '../../components/ErrorComponent/ErrorComponent';
-import ProductDescription from '../../components/PrductDescription/ProductDescription';
-import data from '../../data'
-import './ProductDetails.scss'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { detailsProductAction } from '../../actions/productActions';
+import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox';
+import LoadingBox from '../../components/LoadingBox/LoadingBox';
+import './ProductDetails.scss';
 
-export default function ProductDetails() {
-    let { id } = useParams();
-    const product = data.products.find(item => item._id == id);
-    
-    if(!product)
-    {
-        return(<ErrorComponent />);
+export default function ProductDetails(props) {
+
+    const dispatch = useDispatch();
+    const productId = props.match.params.id;
+    const productDetails = useSelector((state) => state.productDetails);
+    const { isLoading, error, product } = productDetails;
+
+    const [quantity, setQuantity] = useState(1);
+
+    useEffect(() => {
+        dispatch(detailsProductAction(productId));
+    }, [dispatch, productId]);
+
+    const addToCartHandler = () => {
+        props.history.push(`/cart/${productId}?qty=${quantity}`);
     }
 
     return (
-        <div className="main-wrapper">
+        <div>
+        {
+            isLoading ? (<LoadingBox></LoadingBox>) 
+            : error ? (<ErrorMessageBox err={error}/>)
+            : <div className="main-wrapper">
             <div className='product-wrapper'>
                 <div className='details'>
                     <h1 className='details__category'>
@@ -32,17 +44,33 @@ export default function ProductDetails() {
                         </span>
                     </h1>
                     <h1 className='details__name'>{product.name}</h1>
-                    <h2 className='details__price'>{product.price}</h2>
+                    <h2 className='details__price'>{product.price}zł</h2>
                     <p>{product.inStock > 0 ? (<span className="details__in-stock">In stock</span>) : (<span className="details__not-in-stock">Not available</span>)}</p>
-                    <button className="details__add-to-cart-btn"><span>Add to cart</span></button>
+                    {
+                        product.inStock > 0 ?
+                        ( <div className="details__btn-wrapper">
+                            <div className="counter">
+                                <select className="content__wrapper" value={quantity} onChange={(e) => setQuantity(e.target.value)}>
+                                    {
+                                        [...Array(product.inStock).keys()].map((x) => (
+                                            <option key={x+1} value={x+1}>{x+1}</option>
+                                        ))
+                                    }
+                                </select>
+                                <i className="fa fa-angle-right"></i>
+                            </div>
+                            <button onClick={() => addToCartHandler()} className="details__add-to-cart-btn"><span>Add to cart</span></button>
+                        </div>)
+                        : (<span></span>)
+                    }
                 </div>
-                <img src={product.image}></img>
+                <img src={product.image} alt="Product"></img>
                 <a className="more-details" href="#prod-description"><i className="fa fa-angle-down" /></a>
             </div>
             {/* TODO: apply more dteailed description as object and style correspondingly (description: {someInfo: 'info1', someOther: 'info2'})*/}
             <div className="description-wrapper">
                 <div className="reviews">
-                {/* TODO: implement user reviews (UserName: 'text of review', rating)*/}
+                {/* TODO: implement user reviews component (UserName: 'text of review', rating)*/}
                 {/* TODO: use BEM convention here*/}
                     <ul>
                         <li>Review</li>
@@ -56,10 +84,13 @@ export default function ProductDetails() {
                     </ul>
                 </div>
                 <div id="prod-description">
+                    {/* TODO: implement description component */}
                     <h2>Description</h2>
                     <p>{product.description}</p>
                 </div>
             </div>
+        </div>
+        }
         </div>
     )
 }

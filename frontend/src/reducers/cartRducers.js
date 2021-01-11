@@ -14,7 +14,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
                 }
             }
             else {
-               return { ...state, cartItems: [...state.cartItems, item] }; //concatinates items already in cart with new one
+                return { ...state, cartItems: [...state.cartItems, item] }; //concatinates items already in cart with new one
             }
         case CART_REMOVE_ITEM :
             return { ...state, cartItems: state.cartItems.filter(x => x.product !== action.payload)}

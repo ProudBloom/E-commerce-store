@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs'
+
 const data = 
 {
     products:
@@ -98,7 +100,22 @@ const data =
             inStock: 31,
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque dapibus felis eu interdum consectetur. Cras eget diam eget lorem facilisis bibendum vitae nec augue. Etiam sed ipsum ac elit pharetra interdum a non orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed tincidunt, mauris at congue efficitur, ante erat pretium lorem, vel rhoncus lacus nibh et odio. Etiam a finibus sapien, ut porta orci. Maecenas ut placerat ligula. In id imperdiet augue, at cursus urna.',
         },
-    ]
+    ],
+    users: 
+    [
+        {
+            name: 'Jakub',
+            email: 'admin@example.com',
+            password: bcrypt.hashSync('admin', 8),
+            isAdmin: true,
+        },
+        {
+            name: 'John',
+            email: 'user@example.com',
+            password: bcrypt.hashSync('123', 8),
+            isAdmin: false,
+        }
+    ],
 }
 
 export default data;

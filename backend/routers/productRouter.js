@@ -6,15 +6,15 @@ import Product from '../models/productModel.js';
 //Seed route for creating instances of products
 const productRouter = express.Router();
 
-productRouter.get('/seed', expressAsyncHandler(async (req, res) => {
-    const createdProducts = await Product.insertMany(data.products);
-    res.send({ createdProducts });
-})
-);
-
 productRouter.get('/', expressAsyncHandler(async (req, res) => {
     const products = await Product.find({}); //find all
     res.send(products);
+})
+);
+
+productRouter.get('/seed', expressAsyncHandler(async (req, res) => {
+    const createdProducts = await Product.insertMany(data.products);
+    res.send({ createdProducts });
 })
 );
 

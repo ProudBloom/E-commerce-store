@@ -1,37 +1,35 @@
 import express from 'express';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 
-const app = express();
+//Constants
 const SERVER_PORT = process.env.port || 8000;
 const DB_URI = process.env.MONGODB_URL || 'mongodb://localhost/eshoerr';
 
+//Configuration
+dotenv.config();
+const app = express();
 mongoose.connect(DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
 });
 
+//Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
-
-app.get('/', (req, res) => {
-    res.send('Server ready');
+//Catch errors and display in front-end
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
 });
 
-// app.get('/api/products/:id', (req, res) => {
-//     const product = data.products.find((x) => x._id == req.params.id);
-//     if (product) {
-//       res.send(product);
-//     } else {
-//       res.status(404).send({ message: 'Product Not Found' });
-//     }
-// });
-
-//Middleware for catching server errors and displaying it in front-end
-app.use((err, req, res, next) => {
-  res.status(500).send({message: err.message});
+app.get('/', (req, res) => {
+  console.log(process.env.JASONWEBTOKEN_SECRET);
+    res.send('Server ready');
 });
 
 app.listen(SERVER_PORT, () => {

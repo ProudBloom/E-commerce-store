@@ -1,0 +1,116 @@
+@import '../../variables';
+@import '../../mixins';
+
+.signin__wrapper {
+    height: 75vh;
+    text-align: center;
+
+    .signin__form{
+        width: 50%;
+        transform: translateX(50%);
+        position: relative;
+        top: 25%;
+
+        .form__input {
+          position: relative;
+          display: inline-block;
+          margin: 50px 25px;
+        }
+    
+        input[type="password"] {
+            font-weight: 900;
+        }
+    
+        input[type="email"] {
+            padding-left: 0;
+        }
+      
+        .balloon {
+            display: inline-block;
+            width: 250px;
+            padding: 10px 0 10px 25px;
+            font-weight: bold;
+            color: $primary-color;
+            background: #efefef;
+            max-height: 35px;
+            border: 0;
+            border-radius: 3px;
+            outline: 0;
+            text-indent: 60px; // Arbitrary.
+            transition: all .3s ease-in-out;
+            
+            &::-webkit-input-placeholder {
+                color: #efefef;
+                text-indent: 0;
+                font-weight: 300;
+            }
+        
+            + label {
+                display: inline-block;
+                position: absolute;
+                top: 8px;
+                left: 0;
+                bottom: 8px;
+                padding: 5px 15px;
+                color: $primary-color;
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                text-shadow: 0 1px 0 rgba(19,74,70,0);
+                transition: all .3s ease-in-out;
+                border-radius: 3px;
+                background: rgba(122,184,147,0);
+                
+                &:after {
+                    position: absolute;
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -3px;
+                    border-left: 3px solid transparent;
+                    border-right: 3px solid transparent;
+                    border-top: 3px solid rgba(122,184,147,0);
+                    transition: all .3s ease-in-out;
+                }
+            }
+        }
+    
+        .balloon:focus,
+        .balloon:active {
+            color: $secondary-color;
+            text-indent: 0;
+            font-weight: bold;
+            background: #fff;
+            
+            &::-webkit-input-placeholder {
+                color: #aaa;
+            }
+            + label {
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(19,74,70,.4);
+                background: $secondary-color;
+                transform: translateY(-40px);
+                
+                &:after {
+                    border-top: 4px solid $secondary-color;
+                }
+            }
+        }
+    }
+
+    .singin__button {
+        width: 300px;
+        margin-bottom: 25px;
+        @include buttonStyle($secondary-color, $primary-color);
+    }
+
+    .signin__new-account {
+        font-size: .9em;
+    }
+
+    a {
+        color: $secondary-color;
+    }
+}

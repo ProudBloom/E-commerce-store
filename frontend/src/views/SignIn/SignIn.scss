@@ -1,20 +1,23 @@
 @import '../../variables';
 @import '../../mixins';
 
-.signin__wrapper {
-    height: 75vh;
+.custom-form__wrapper {
+    height: 80vh;
     text-align: center;
+    @include centerchildrenColumn();
 
-    .signin__form{
-        width: 50%;
-        transform: translateX(50%);
-        position: relative;
-        top: 25%;
+    .custom-form{
+
+        width: 400px;
+
+        h1 {
+            margin-bottom: 15px;
+        }
 
         .form__input {
           position: relative;
           display: inline-block;
-          margin: 50px 25px;
+          margin: 20px 25px;
         }
     
         input[type="password"] {
@@ -29,10 +32,8 @@
             display: inline-block;
             width: 250px;
             padding: 10px 0 10px 25px;
-            font-weight: bold;
             color: $primary-color;
             background: #efefef;
-            max-height: 35px;
             border: 0;
             border-radius: 3px;
             outline: 0;
@@ -48,7 +49,7 @@
             + label {
                 display: inline-block;
                 position: absolute;
-                top: 8px;
+                top: 7px;
                 left: 0;
                 bottom: 8px;
                 padding: 5px 15px;
@@ -100,13 +101,13 @@
         }
     }
 
-    .singin__button {
+    .custom-form__button {
         width: 300px;
         margin-bottom: 25px;
         @include buttonStyle($secondary-color, $primary-color);
     }
 
-    .signin__new-account {
+    .custom-form__sublink {
         font-size: .9em;
     }
 

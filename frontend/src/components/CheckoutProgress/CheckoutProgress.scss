@@ -1,0 +1,22 @@
+@import '../../variables';
+@import '../../mixins';
+
+.checkout-progress__wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding: 25px;
+
+    div {
+        color: $primary-color;
+        flex: 1;
+        padding: 10px;
+        margin: 0 2px;
+        border-top: 2px solid lighten($primary-color, 25%);
+    }
+
+    .active {
+        font-weight: bold;
+        border-top: 2px solid $secondary-color;
+        color: $secondary-color;
+    }
+}

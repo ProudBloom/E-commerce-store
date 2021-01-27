@@ -97,8 +97,8 @@ export default function Cart(props) {
                         <label for="terms">I agree to <span>Terms & conditions</span></label>
                     </div>
                     <div className="summary__buttons">
-                        <button onClick={proceedToCheckout} className="summary__checkout-button">Checkout <i class="fa fa-credit-card"></i></button>
-                        <button onClick={paypalHandler} className="summary__checkout-button">Paypal <i class="fa fa-paypal"></i></button>
+                        <button onClick={proceedToCheckout} className="summary__checkout-button">Checkout <i className="fa fa-credit-card"></i></button>
+                        <button onClick={paypalHandler} className="summary__checkout-button">Paypal <i className="fa fa-paypal"></i></button>
                     </div>
                     <hr />
                 </div>

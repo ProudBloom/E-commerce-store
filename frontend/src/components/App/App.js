@@ -7,6 +7,8 @@ import Footer from '../Footer/Footer'
 import HomePage from '../../views/HomePage/HomePage'
 import Cart from '../../views/Cart/Cart'
 import SingIn from '../../views/SignIn/SignIn'
+import Register from '../../views/Register/Register'
+import Shipping from '../../views/Shipping/Shipping'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/item/:id" component={ProductDetails}></Route>
             <Route path="/cart/:id?" component={Cart}></Route>
             <Route path="/signin" component={SingIn}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/shipping" component={Shipping}></Route>
           <Footer />
         </BrowserRouter>
 

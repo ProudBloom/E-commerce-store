@@ -5,7 +5,7 @@ header
 {
     font-family: 'Lato', sans-serif;
     width: 100%;
-    min-height: 15vh;
+    height: 100px;
     background-color: $primary-color;
     display: flex;
     justify-content: space-between;
@@ -56,6 +56,35 @@ header
                 color: white;
             }
             &:hover{transform: scale(1.1);}
+        }
+    }
+
+    .menu__dropdown {
+        i {
+            color: white;
+        }
+
+        &:hover .menu__dropdown-content {
+            display: block;
+        }
+    }
+    
+    .menu__dropdown-content {
+        position: absolute;
+        display: none;
+        min-width: 12rem;
+        padding: 10px;
+        right: -40px;
+        z-index: 100;
+        background-color: $primary-color;
+        border-bottom-left-radius: 25px;
+
+        li {
+            padding: 10px 5px;
+            
+            a {
+                color: $secondary-color;
+            }
         }
     }
 }

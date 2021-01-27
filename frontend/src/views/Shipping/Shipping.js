@@ -7,16 +7,18 @@ export default function Shipping(props) {
 
     const userSignin = useSelector(state => state.signin);
     const { userInfo } = userSignin;
+    const cart = useSelector(state => state.cart);
+    const { shippingAddress } = cart;
 
     if(!userInfo) {
         props.history.push('signin');
     }
 
-    const [fullname, setFullname] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [zip, setZip] = useState('');
-    const [country, setCountry] = useState('');
+    const [fullname, setFullname] = useState(shippingAddress.fullname);
+    const [address, setAddress] = useState(shippingAddress.address);
+    const [city, setCity] = useState(shippingAddress.city);
+    const [zip, setZip] = useState(shippingAddress.zip);
+    const [country, setCountry] = useState(shippingAddress.country);
 
     const dispatch = useDispatch();
 

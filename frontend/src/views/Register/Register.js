@@ -36,11 +36,11 @@ export default function Register(props) {
     }, [props.history, redirect, userInfo]);
 
     return (
-        <div className="signin__wrapper">
+        <div className="custom-form__wrapper">
         {
             isLoading ? (<LoadingBox></LoadingBox>) 
             : error ? (<ErrorMessageBox err={error}/>)
-            : <form className="signin__form" onSubmit={submitHandler}>
+            : <form className="custom-form" onSubmit={submitHandler}>
                 <h1>Register</h1>
                 <div className="form__input">
                     <input className="balloon" id="name" type="text" placeholder="Your name?" required onChange={(e) => setName(e.target.value)}/>
@@ -59,9 +59,9 @@ export default function Register(props) {
                     <label htmlFor="confirm-password">Confrim Password</label>
                 </div>
                 <div>
-                    <button className="singin__button" type="submit"><span>Register Me</span></button>
+                    <button className="custom-form__button" type="submit"><span>Register Me</span></button>
                 </div>
-                <div className="signin__new-account">
+                <div className="custom-form__sublink">
                     Already have an account? <Link to={`/signin?redirect=${redirect}`}>Sign in</Link>
                 </div>
             </form>

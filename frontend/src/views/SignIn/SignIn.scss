@@ -1,12 +1,12 @@
 @import '../../variables';
 @import '../../mixins';
 
-.signin__wrapper {
+.custom-form__wrapper {
     height: 80vh;
     text-align: center;
     @include centerchildrenColumn();
 
-    .signin__form{
+    .custom-form{
 
         width: 400px;
 
@@ -101,13 +101,13 @@
         }
     }
 
-    .singin__button {
+    .custom-form__button {
         width: 300px;
         margin-bottom: 25px;
         @include buttonStyle($secondary-color, $primary-color);
     }
 
-    .signin__new-account {
+    .custom-form__sublink {
         font-size: .9em;
     }
 

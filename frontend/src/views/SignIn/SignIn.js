@@ -31,11 +31,11 @@ export default function SingIn(props) {
     }, [props.history, redirect, userInfo]);
 
     return (
-        <div className="signin__wrapper">
+        <div className="custom-form__wrapper">
         {
             isLoading ? (<LoadingBox></LoadingBox>) 
             : error ? (<ErrorMessageBox err={error}/>)
-            : <form className="signin__form" onSubmit={submitHandler}>
+            : <form className="custom-form" onSubmit={submitHandler}>
                 <h1>Login</h1>
                 <div className="form__input">
                     <input className="balloon" id="email" type="email" placeholder="Your email?" required onChange={(e) => setEmail(e.target.value)}/>
@@ -46,9 +46,9 @@ export default function SingIn(props) {
                     <label htmlFor="password">Password</label>
                 </div>
                 <div>
-                    <button className="singin__button" type="submit"><span>Sign in</span></button>
+                    <button className="custom-form__button" type="submit"><span>Sign in</span></button>
                 </div>
-                <div className="signin__new-account">
+                <div className="custom-form__sublink">
                     Are you a new member? <Link to={`/register?redirect=${redirect}`}>Ceate a new account</Link>
                 </div>
             </form>

@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddressAction } from '../../actions/cartActions';
 import CheckoutProgress from '../../components/CheckoutProgress/CheckoutProgress'
 
 export default function Shipping(props) {
+
+    const userSignin = useSelector(state => state.signin);
+    const { userInfo } = userSignin;
+
+    if(!userInfo) {
+        props.history.push('signin');
+    }
 
     const [fullname, setFullname] = useState('');
     const [address, setAddress] = useState('');

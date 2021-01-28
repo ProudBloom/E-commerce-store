@@ -85,7 +85,7 @@
         flex: 3;
         background-color: $primary-color;
         color: white;
-        @include centerchildrenColumn();
+        @include centerChildrenColumn();
         justify-content: start;
 
         hr {
@@ -127,7 +127,7 @@
         }
 
         .summary__buttons {
-            @include centerchildrenColumn();
+            @include centerChildrenColumn();
             margin-top: 15%;
 
             button {

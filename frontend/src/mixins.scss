@@ -16,21 +16,21 @@
     }
 }
 
-@mixin centerchildren
+@mixin centerChildren
 {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-@mixin centerchildrenRow
+@mixin centerChildrenRow
 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@mixin centerchildrenColumn
+@mixin centerChildrenColumn
 {
     display: flex;
     justify-content: center;

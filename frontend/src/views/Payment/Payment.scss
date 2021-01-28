@@ -1,0 +1,64 @@
+@import '../../variables';
+@import '../../mixins';
+
+
+.payment__wrapper {
+    height: 80vh;
+    text-align: center;
+
+    .payments {
+        @include centerChildrenColumn();
+
+        h1 {
+            margin-bottom: 25px;
+            color: $primary-color;
+        }
+
+        .payment__button-wrapper{
+            @include centerChildren();
+            justify-content: space-between;
+            width: 500px;
+            min-height: 150px;
+            background-color: transparent;
+
+            .payment__button {
+                width: 240px;
+                height: 130px;
+                background-color: transparent;
+                color: $primary-color;
+                border: none;
+                outline: none;
+                border-radius: 28px;
+                transition: .15s ease;
+                cursor: pointer;
+                
+                i {
+                    font-size: 4rem;
+                }
+
+                p {
+                    margin-top: 10px;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                }
+                
+                &:focus{
+                    color: $secondary-color;
+                    background-color: darken($primary-color, 10%);
+                    border-bottom: 5px solid $secondary-color;
+                    border-left: 5px solid $secondary-color;
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    .submit__wrapper {
+
+        .payment__button {
+            width: 300px;
+            margin-top: 25px;
+            @include buttonStyle($secondary-color, $primary-color);
+        }
+    }
+}

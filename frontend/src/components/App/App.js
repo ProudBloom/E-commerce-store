@@ -9,6 +9,7 @@ import Cart from '../../views/Cart/Cart'
 import SingIn from '../../views/SignIn/SignIn'
 import Register from '../../views/Register/Register'
 import Shipping from '../../views/Shipping/Shipping'
+import Payment from '../../views/Payment/Payment'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/signin" component={SingIn}></Route>
             <Route path="/register" component={Register}></Route>
             <Route path="/shipping" component={Shipping}></Route>
+            <Route path="/payment" component={Payment}></Route>
           <Footer />
         </BrowserRouter>
 

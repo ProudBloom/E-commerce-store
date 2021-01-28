@@ -4,7 +4,7 @@
 .custom-form__wrapper {
     height: 80vh;
     text-align: center;
-    @include centerchildrenColumn();
+    @include centerChildrenColumn();
 
     .custom-form{
 
@@ -12,6 +12,7 @@
 
         h1 {
             margin-bottom: 15px;
+            color: $primary-color;
         }
 
         .form__input {

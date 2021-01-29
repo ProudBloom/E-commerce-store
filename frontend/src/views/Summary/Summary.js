@@ -79,10 +79,10 @@ export default function Summary(props) {
                     <div className="summary__summ">
                         <h1>summary</h1>
                         <div className="summ-data">
-                            <p><b>All items cost: </b>{cart.itemsPrice} zł</p>
-                            <p><b>Shipping cost: </b>{cart.shippingPrice} zł</p>
-                            <p><b>Tax: </b>{cart.taxPrice} zł</p>
-                            <p id="summ-total"><b>Total cost: </b>{cart.totalPrice} zł</p>
+                            <p><b>All items cost: </b><span>{cart.itemsPrice.toFixed(2)} zł</span></p>
+                            <p><b>Shipping cost: </b><span>{cart.shippingPrice.toFixed(2)} zł</span></p>
+                            <p><b>Tax: </b><span>{cart.taxPrice.toFixed(2)} zł</span></p>
+                            <p id="summ-total"><b>Total cost: </b><span>{cart.totalPrice.toFixed(2)} zł</span></p>
                         </div>
                         <div className="summ-button">
                             <button onClick={placeOrderHandler}><span>Checkout</span><i className="fa fa-credit-card"></i></button>

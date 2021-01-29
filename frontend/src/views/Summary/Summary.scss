@@ -94,12 +94,15 @@
                 p {
                     font-size: 1.2rem;
                     margin-top: 15px;
+
+                    span {
+                        float: right;
+                    }
                 }
             }
 
             #summ-total {
                 margin-top: 35px;
-                text-align: center;
                 text-transform: uppercase;
                 font-weight: bolder;
                 font-size: 1.5rem;

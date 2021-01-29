@@ -1,0 +1,129 @@
+@import '../../variables';
+@import '../../mixins';
+
+.summary__wrapper {
+    @include centerChildren;
+    min-height: 80vh;
+
+    .summary {
+        padding: 50px;
+        width: 100%;
+        display: grid;
+        grid-template-areas: 
+        "ceridentials payment summ"
+        "items        items   summ";
+        grid-gap: 10px;
+        grid-auto-rows: minmax(300px, auto);
+        grid-auto-columns: minmax(300px, auto);
+
+        div {
+            padding: 15px;
+            border-radius: 5px;
+
+            h1 {
+                margin-bottom: 15px;
+                text-transform: uppercase;
+            }
+
+            p {
+                padding: 5px 0;
+            }
+        }
+
+        .summary__ceridentials {
+            grid-area: ceridentials;
+            background-color: $secondary-color;
+            color: $primary-color;
+
+            .ceridentials-data {
+                margin-top: 35px;
+                @include centerChildrenColumn();
+                align-items: start;
+            }
+        }
+
+        .summary__payment {
+            grid-area: payment;
+            background-color: $primary-color;
+            color: $secondary-color;
+
+            .payment-icon {
+                margin-top: 35px;
+                @include centerChildren();
+
+                i {
+                    font-size: 8rem;
+                }
+            }
+        }
+
+        .summary__items {
+            grid-area: items;
+            background-color: $primary-color;
+            color: $secondary-color;
+
+            ul {
+                @include centerChildrenRow();
+                justify-content: start;
+                border-bottom: 1px solid lighten($primary-color, 10%);
+                margin: 10px 5px;
+                
+                li {
+                    margin: auto 0;
+                    flex: 1;
+                    @include centerChildren();
+                    text-align: center;
+                    height: 80px;
+
+                    img {
+                        border-radius: 10px;
+                        width: 80px;
+                    }
+                }
+            }
+        }
+
+        .summary__summ {
+            position: relative;
+            grid-area: summ;
+            background-color: $secondary-color;
+            color: $primary-color;
+
+            .summ-data {
+                
+                p {
+                    font-size: 1.2rem;
+                    margin-top: 15px;
+                }
+            }
+
+            #summ-total {
+                margin-top: 35px;
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: bolder;
+                font-size: 1.5rem;
+            }
+
+            .summ-button {
+                position: absolute;
+                width: 100%;
+                @include centerChildren();
+                padding: 0;
+                bottom: 25px;
+                left: 0;
+
+                button {
+                    @include buttonStyleActive(darken($primary-color, 10%), $secondary-color);
+                    width: 350px;
+                    height: 100px;
+                    border-radius: 40px;
+
+                    span, i {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

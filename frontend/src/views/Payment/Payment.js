@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { savePaymentMethodAction } from '../../actions/cartActions';
 import CheckoutProgress from '../../components/CheckoutProgress/CheckoutProgress'
 import './Payment.scss'
@@ -7,6 +7,12 @@ import './Payment.scss'
 export default function Payment(props) {
 
     const [paymentMethod, setPaymentMethod] = useState('PayPal');
+    const signin = useSelector(state => state.signin);
+    const { userInfo } = signin;
+
+    if(!userInfo) {
+        props.history.push('/signin');
+    }
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -15,7 +21,7 @@ export default function Payment(props) {
 
     const submitHandler = () => {
         dispatch(savePaymentMethodAction(paymentMethod));
-        props.history.push('/orderdetails');
+        props.history.push('/summary');
     }
 
     return (

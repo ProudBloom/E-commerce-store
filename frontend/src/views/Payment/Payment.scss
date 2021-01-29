@@ -4,7 +4,6 @@
 
 .payment__wrapper {
     height: 80vh;
-    text-align: center;
 
     .payments {
         @include centerChildrenColumn();

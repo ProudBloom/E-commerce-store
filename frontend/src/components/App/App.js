@@ -10,6 +10,7 @@ import SingIn from '../../views/SignIn/SignIn'
 import Register from '../../views/Register/Register'
 import Shipping from '../../views/Shipping/Shipping'
 import Payment from '../../views/Payment/Payment'
+import Summary from '../../views/Summary/Summary'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/register" component={Register}></Route>
             <Route path="/shipping" component={Shipping}></Route>
             <Route path="/payment" component={Payment}></Route>
+            <Route path="/summary" component={Summary}></Route>
           <Footer />
         </BrowserRouter>
 

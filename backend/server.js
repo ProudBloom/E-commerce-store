@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
+import orderRouter from './routers/orderRouter.js';
 
 //Constants
 const SERVER_PORT = process.env.port || 8000;
@@ -20,9 +21,11 @@ mongoose.connect(DB_URI, {
 //Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+  //Custom routers
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
-//Catch errors and display in front-end
+app.use('/api/orders', orderRouter);
+  //Catch errors and display in front-end
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });

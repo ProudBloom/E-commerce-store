@@ -33,7 +33,6 @@ export default function Summary(props) {
 
     }
 
-
     if(!userInfo) {
         props.history.push('/signin');
     }

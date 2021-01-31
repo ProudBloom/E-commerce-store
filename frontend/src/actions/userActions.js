@@ -24,7 +24,7 @@ export const userSigninAction = (email, password) => async (dispatch) => {
         dispatch(
             {
                 type: USER_SIGNIN_FAIL,
-                payload: error.response && error.response.data ? error.response.data.message : error.message
+                payload: (error.response && error.response.data) ? error.response.data.message : error.message
             });
     }
 }
@@ -59,7 +59,7 @@ export const userRegisterAction = (name, email, password) => async (dispatch) =>
         dispatch(
             {
                 type: USER_SIGNIN_FAIL,
-                payload: error.response && error.response.data ? error.response.data.message : error.message
+                payload: (error.response && error.response.data) ? error.response.data.message : error.message
             });
     }
 }

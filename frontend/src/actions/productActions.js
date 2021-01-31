@@ -41,7 +41,7 @@ export const detailsProductAction = (productId) => async (dispatch) => {
         dispatch(
             { 
                 type: PRODUCT_DETAILS_FAIL, 
-                payload: error.response && error.response.data ? error.response.data.message : error.message
+                payload: (error.response && error.response.data) ? error.response.data.message : error.message
             });
     }
 }

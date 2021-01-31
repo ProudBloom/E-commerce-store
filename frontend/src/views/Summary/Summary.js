@@ -1,15 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { createOrderAction } from '../../actions/orderActions'
 import CheckoutProgress from '../../components/CheckoutProgress/CheckoutProgress'
+import { ORDER_CREATE_RESET } from '../../constants/orderConstants'
 import { SHIPPING_PRICE, FREE_SHIPPING_PRICE } from '../../variables'
+import LoadingBox from '../../components/LoadingBox/LoadingBox'
+import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox'
 import './Summary.scss'
 
 export default function Summary(props) {
+
+    const dispatch = useDispatch();
 
     const cart = useSelector(state => state.cart);
     const { cartItems, shippingAddress, paymentMethod } = cart;
     const signin = useSelector(state => state.signin);
     const { userInfo } = signin;
+    const orderCreate = useSelector(state => state.orderCreate);
+    const { loading, success, error, order } = orderCreate;
 
     const toPrice = (number) =>  Number(number.toFixed(2));
 
@@ -30,7 +38,8 @@ export default function Summary(props) {
     }
 
     const placeOrderHandler = () => {
-
+        //Replace cartItems field from cart with orderItems
+        dispatch(createOrderAction({ ...cart, orderItems: cart.cartItems }));
     }
 
     if(!userInfo) {
@@ -41,8 +50,20 @@ export default function Summary(props) {
         props.history.push('/payment');
     }
 
+    useEffect(() => {
+        if(success) {
+            props.history.push(`/order${order._id}`);
+        }
+        dispatch(
+            {
+                type: ORDER_CREATE_RESET,
+            });
+    }, [dispatch, order, props.history, success]);
+
     return (
         <div>
+            { loading && <LoadingBox/> }
+            { error && <ErrorMessageBox>{error}</ErrorMessageBox> }
             <CheckoutProgress step1 step2 step3 step4/>
             <div className="summary__wrapper">
                 <div className="summary">

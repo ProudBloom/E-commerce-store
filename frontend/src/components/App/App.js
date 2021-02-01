@@ -11,6 +11,7 @@ import Register from '../../views/Register/Register'
 import Shipping from '../../views/Shipping/Shipping'
 import Payment from '../../views/Payment/Payment'
 import Summary from '../../views/Summary/Summary'
+import OrderDetails from '../../views/OrderDetails/OrderDetails'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/shipping" component={Shipping}></Route>
             <Route path="/payment" component={Payment}></Route>
             <Route path="/summary" component={Summary}></Route>
+            <Route path="/order/:id" component={OrderDetails}></Route>
           <Footer />
         </BrowserRouter>
 

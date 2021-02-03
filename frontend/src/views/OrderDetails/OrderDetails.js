@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import { PayPalButton } from 'react-paypal-button-v2'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CheckoutProgress from '../../components/CheckoutProgress/CheckoutProgress'
 import { orderDetailsAction } from '../../actions/orderActions'
 import './OrderDetails.scss'
 import LoadingBox from '../../components/LoadingBox/LoadingBox'
 import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox'
+import axios from 'axios'
 
 export default function OrderDetails(props) {
 
@@ -15,6 +16,12 @@ export default function OrderDetails(props) {
     const orderId = props.match.params.id;
     const orderDetails = useSelector(state => state.orderDetails);
     const { order, loading, error } = orderDetails;
+
+    const [paypalSdkReady, setPaypalSdkReady] = useState('');
+
+    if(!userInfo) {
+        props.history.push('/signin');
+    }
 
     const paymentSwitch = (payment) => {
         switch(payment) {
@@ -27,19 +34,48 @@ export default function OrderDetails(props) {
         }
     }
 
-    if(!userInfo) {
-        props.history.push('/signin');
-    }
-
     useEffect(() => {
-        dispatch(orderDetailsAction(orderId));
-    }, [dispatch, orderId]);
+        const addPayPalScript = async () => {
+            const { data } = await axios.get('/api/config/paypal');
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+            script.async = true;
+
+            script.onload = () => {
+                setPaypalSdkReady(true);
+            };
+
+            document.body.appendChild(script);
+        };
+
+        if(!order) {
+            dispatch(orderDetailsAction(orderId));
+        }
+
+        else {
+            if(!order.isPaid) {
+                if(!window.paypal) {
+                    addPayPalScript();
+                }
+                else {
+                    setPaypalSdkReady(true);
+                }
+            }
+        }
+
+    }, [dispatch, order, orderId, setPaypalSdkReady]);
+
+    
+    const successPaymentHandler = () => {
+        //Dispatch pay action
+    }
 
     return loading ? (<LoadingBox />) : 
             error ? (<ErrorMessageBox>{error}</ErrorMessageBox>) :
         (
         <div>
-            <h1>Order no. {order._id}</h1>
+            <h1 className="summary__heading">Order no. {order._id}</h1>
             <div className="summary__wrapper">
                 <div className="summary">
                     <div className="summary__ceridentials">
@@ -51,12 +87,24 @@ export default function OrderDetails(props) {
                             <p><b>ZIP code: </b>{order.shippingAddress.zip}</p>
                             <p><b>Country: </b>{order.shippingAddress.country}</p>
                         </div>
-                        {order.isDelivered ? (<p>Delivered at {order.deliveredAt}</p>) : (<p>Not delivered</p>)}
+                        <div className="delivery-status">
+                            {
+                            order.isDelivered 
+                            ? (<div className="delivered">Delivered at {order.deliveredAt}</div>)
+                            : (<div className="not-delivered">Not delivered</div>)
+                            }
+                        </div>
                     </div>
                     <div className="summary__payment">
                         <h1>payment</h1>
                         <div className="payment-icon">{paymentSwitch(order.paymentMethod)}</div>
-                        {order.isPaid ? (<p>Paid at {order.paidAt}</p>) : (<p>Not paid</p>)}
+                        <div className="payment-status">
+                            {
+                            order.isPaid 
+                            ? (<div className="paid">Paid at {order.paidAt}</div>)
+                            : (<div className="not-paid">Not paid</div>)
+                            }
+                            </div>
                     </div>
                     <div className="summary__items">
                         <h1>items</h1>
@@ -81,6 +129,17 @@ export default function OrderDetails(props) {
                             <p><b>Tax: </b><span>{order.taxPrice.toFixed(2)} zł</span></p>
                             <p id="summ-total"><b>Total cost: </b><span>{order.totalPrice.toFixed(2)} zł</span></p>
                         </div>
+                        {
+                            !order.isPaid  && (
+                                <div className="summ-paypal">
+                                    {
+                                        !paypalSdkReady 
+                                        ? (<LoadingBox></LoadingBox>)
+                                        : <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler}></PayPalButton>
+                                    }
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>

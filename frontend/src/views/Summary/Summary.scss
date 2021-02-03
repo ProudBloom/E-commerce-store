@@ -34,11 +34,36 @@
             grid-area: ceridentials;
             background-color: $secondary-color;
             color: $primary-color;
+            position: relative;
 
             .ceridentials-data {
                 margin-top: 35px;
                 @include centerChildrenColumn();
                 align-items: start;
+            }
+
+            .delivery-status {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-weight: bold;
+                color: white;
+                padding: 0;
+
+                div {
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+
+                .not-delivered {
+                    background: $red;
+                }
+
+                .delivered {
+                    background-color: $green;
+                }
             }
         }
 
@@ -46,6 +71,7 @@
             grid-area: payment;
             background-color: $primary-color;
             color: $secondary-color;
+            position: relative;
 
             .payment-icon {
                 margin-top: 35px;
@@ -53,6 +79,30 @@
 
                 i {
                     font-size: 8rem;
+                }
+            }
+
+            .payment-status {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-weight: bold;
+                color: white;
+                padding: 0;
+
+                div {
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+
+                .not-paid {
+                    background: $red;
+                }
+
+                .paid {
+                    background-color: $green;
                 }
             }
         }
@@ -129,4 +179,11 @@
             }
         }
     }
+}
+
+.summary__heading {
+    width: 100%;
+    text-align: center;
+    padding: 25px 25px 0 25px;
+    color: $secondary-color;
 }

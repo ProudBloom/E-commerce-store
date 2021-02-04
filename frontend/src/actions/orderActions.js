@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import { CART_EMPTY } from '../constants/cartConstants';
-import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL } from "../constants/orderConstants"
+import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAYMENT_REQUEST, ORDER_PAYMENT_FAIL, ORDER_PAYMENT_SUCCESS } from "../constants/orderConstants"
 
 export const createOrderAction = (order) => async (dispatch, getState) => {
     dispatch(
@@ -56,6 +56,33 @@ export const orderDetailsAction = (orderId) => async (dispatch, getState) => {
             dispatch(
                 {
                     type: ORDER_DETAILS_FAIL,
+                    payload: (error.response && error.response.data) ? error.response.data.message : error.message,
+                });
+        }
+}
+
+export const orderPaymentAction = (order, paymentResult) => async (dispatch, getState) => {
+    dispatch(
+        {
+            type: ORDER_PAYMENT_REQUEST,
+            payload: { order, paymentResult },
+        });
+        try {
+            const { signin: { userInfo } } = getState();
+            const { data } = await Axios.put(`/api/orders/${order._id}/pay`, paymentResult, {
+                headers: { Authorization: `Bearer ${userInfo.token}` }
+            });
+
+            dispatch(
+                {
+                    type: ORDER_PAYMENT_SUCCESS,
+                    payload: data,
+                });
+        }
+        catch(error) {
+            dispatch(
+                {
+                    type: ORDER_PAYMENT_FAIL,
                     payload: (error.response && error.response.data) ? error.response.data.message : error.message,
                 });
         }

@@ -1,21 +1,26 @@
 import { PayPalButton } from 'react-paypal-button-v2'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { orderDetailsAction } from '../../actions/orderActions'
+import { orderDetailsAction, orderPaymentAction } from '../../actions/orderActions'
 import './OrderDetails.scss'
 import LoadingBox from '../../components/LoadingBox/LoadingBox'
 import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox'
 import axios from 'axios'
+import { ORDER_PAYMENT_RESET } from '../../constants/orderConstants'
 
 export default function OrderDetails(props) {
 
     const dispatch = useDispatch();
-
+    
+    const urlOrderId = props.match.params.id;
     const signin = useSelector(state => state.signin);
     const { userInfo } = signin;
-    const orderId = props.match.params.id;
     const orderDetails = useSelector(state => state.orderDetails);
     const { order, loading, error } = orderDetails;
+    const orderPayment = useSelector(state => state.orderPayment);
+    const { error: paymentError, success: paymentSuccess } = orderPayment; //Rename error and success
+
+
 
     const [paypalSdkReady, setPaypalSdkReady] = useState('');
 
@@ -49,8 +54,9 @@ export default function OrderDetails(props) {
             document.body.appendChild(script);
         };
 
-        if(!order) {
-            dispatch(orderDetailsAction(orderId));
+        if(!order || paymentSuccess || (order && order._id !== urlOrderId)) {
+            dispatch({ type: ORDER_PAYMENT_RESET })
+            dispatch(orderDetailsAction(urlOrderId));
         }
 
         else {
@@ -64,11 +70,11 @@ export default function OrderDetails(props) {
             }
         }
 
-    }, [dispatch, order, orderId, setPaypalSdkReady]);
+    }, [dispatch, order, urlOrderId, setPaypalSdkReady, paymentSuccess]);
 
     
-    const successPaymentHandler = () => {
-        //Dispatch pay action
+    const successPaymentHandler = (paymentResult) => {
+        dispatch(orderPaymentAction(order, paymentResult));
     }
 
     return loading ? (<LoadingBox />) : 
@@ -90,7 +96,7 @@ export default function OrderDetails(props) {
                         <div className="delivery-status">
                             {
                             order.isDelivered 
-                            ? (<div className="delivered">Delivered at {order.deliveredAt}</div>)
+                            ? (<div className="delivered">Delivered at {order.deliveredAt.substr(0, 10)}, {parseInt(order.deliveredAt.substr(11, 2)) + 1}{order.deliveredAt.substr(13, 3)}</div>)
                             : (<div className="not-delivered">Not delivered</div>)
                             }
                         </div>
@@ -101,7 +107,7 @@ export default function OrderDetails(props) {
                         <div className="payment-status">
                             {
                             order.isPaid 
-                            ? (<div className="paid">Paid at {order.paidAt}</div>)
+                            ? (<div className="paid">Paid at {order.paidAt.substr(0, 10)}, {parseInt(order.paidAt.substr(11, 2)) + 1}{order.paidAt.substr(13, 3)}</div>)
                             : (<div className="not-paid">Not paid</div>)
                             }
                             </div>
@@ -135,13 +141,16 @@ export default function OrderDetails(props) {
                                     {
                                         !paypalSdkReady 
                                         ? (<LoadingBox></LoadingBox>)
-                                        : <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler}></PayPalButton>
+                                        : <>
+                                        <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} />
+                                        </>
                                     }
                                 </div>
                             )
                         }
                     </div>
                 </div>
+                {paymentError && <div className="summary__payment-error"><p>{paymentError}</p></div>}
             </div>
         </div>
     )

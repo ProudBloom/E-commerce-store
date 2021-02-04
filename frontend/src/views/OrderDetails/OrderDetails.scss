@@ -130,3 +130,20 @@
         }
     }
 }
+
+.summary__payment-error {
+    position: absolute;
+    text-align: center;
+    background-color: $red;
+    border: 5px solid darken($red, 25%);
+    border-radius: 28px;
+    color: white;
+    font-weight: bold;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    width: 800px;
+}

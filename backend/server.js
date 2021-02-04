@@ -35,6 +35,11 @@ app.get('/', (req, res) => {
     res.send('Server ready');
 });
 
+//Send client id to frontend
+app.get('/api/config/paypal', (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
+});
+
 app.listen(SERVER_PORT, () => {
     console.log('Server running on http://localhost:' + SERVER_PORT);
 });

@@ -54,6 +54,11 @@
                 i {
                     font-size: 8rem;
                 }
+
+                svg {
+                    max-width: 300px;
+                    max-height: 100px;
+                }
             }
         }
 
@@ -146,4 +151,8 @@
     margin-right: auto;
     padding: 25px;
     width: 800px;
+}
+
+#smart-menu {
+    display: none;
 }

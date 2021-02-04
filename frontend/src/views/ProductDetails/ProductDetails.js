@@ -44,7 +44,7 @@ export default function ProductDetails(props) {
                         </span>
                     </h1>
                     <h1 className='details__name'>{product.name}</h1>
-                    <h2 className='details__price'>{product.price}zł</h2>
+                    <h2 className='details__price'>{product.price}$</h2>
                     <p>{product.inStock > 0 ? (<span className="details__in-stock">In stock</span>) : (<span className="details__not-in-stock">Not available</span>)}</p>
                     {
                         product.inStock > 0 ?

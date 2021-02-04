@@ -35,6 +35,12 @@
                     font-size: 4rem;
                 }
 
+                svg {
+                    max-height: 60px;
+                    max-width: 120px;
+                    fill: $primary-color;
+                }
+
                 p {
                     margin-top: 10px;
                     font-size: 1.2rem;
@@ -47,6 +53,10 @@
                     border-bottom: 5px solid $secondary-color;
                     border-left: 5px solid $secondary-color;
                     transform: scale(1.1);
+
+                    svg {
+                        fill: $secondary-color;
+                    }
                 }
             }
         }

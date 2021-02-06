@@ -52,6 +52,7 @@ export default function Header() {
                                 <div><p>{userInfo.name}</p> <i className="fa fa-caret-down"></i></div>
                                 <ul className="menu__dropdown-content">
                                     <li><Link to="#">Settings</Link></li>
+                                    <li><Link to="/orders">Order history</Link></li>
                                     <li><Link to="#signout" onClick={signoutHandler}>Log out</Link></li>
                                 </ul>
                             </div>

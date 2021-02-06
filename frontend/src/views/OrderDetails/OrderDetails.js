@@ -30,7 +30,7 @@ export default function OrderDetails(props) {
 
     const paymentSwitch = (payment) => {
         switch(payment) {
-            case 'PayPal':
+            case 'PayPal': 
                 return (<i className="fa fa-paypal"></i>);
             case 'CreditCard': 
                 return (<i className="fa fa-credit-card"></i>);
@@ -70,7 +70,7 @@ export default function OrderDetails(props) {
             case 'CreditCard': 
             return (
                 <div>
-                    <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} style={{ color: 'black' }}/>
+                    <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} style={{ color: 'black' }} shippingPreference='SET_PROVIDED_ADDRESS'/>
                     <p>Credit card button goes here</p>
                 </div>
             );
@@ -186,13 +186,7 @@ export default function OrderDetails(props) {
                             !order.isPaid  && (
                                 <div className="summ-paypal">
                                     {
-                                        !paypalSdkReady 
-                                        ? (<LoadingBox></LoadingBox>)
-                                        : <>
-                                            {
-                                                paypalbuttonSwitch(order.paymentMethod)
-                                            }
-                                        </>
+                                        paypalbuttonSwitch(order.paymentMethod)
                                     }
                                 </div>
                             )

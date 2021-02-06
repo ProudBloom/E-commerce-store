@@ -12,6 +12,7 @@ import Shipping from '../../views/Shipping/Shipping'
 import Payment from '../../views/Payment/Payment'
 import Summary from '../../views/Summary/Summary'
 import OrderDetails from '../../views/OrderDetails/OrderDetails'
+import OrderHistory from '../../views/OrderHistory/OrderHistory'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/payment" component={Payment}></Route>
             <Route path="/summary" component={Summary}></Route>
             <Route path="/order/:id" component={OrderDetails}></Route>
+            <Route path="/orders" component={OrderHistory}></Route>
           <Footer />
         </BrowserRouter>
 

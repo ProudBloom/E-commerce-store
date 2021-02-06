@@ -1,9 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import productRouter from './routers/productRouter.js';
-import userRouter from './routers/userRouter.js';
-import orderRouter from './routers/orderRouter.js';
+import express from 'express'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import productRouter from './routers/productRouter.js'
+import userRouter from './routers/userRouter.js'
+import orderRouter from './routers/orderRouter.js'
 
 //Constants
 const SERVER_PORT = process.env.port || 8000;

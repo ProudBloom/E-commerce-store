@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { orderHistoryAction } from '../../actions/orderActions';
 import './HomePage.scss'
 
 export default function HomePage() {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(orderHistoryAction());
+    }, [dispatch]);
+
     return (
         <div className="home__background">
             <div className="home__heading">

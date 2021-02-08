@@ -63,7 +63,7 @@
         }
 
         .table__counter {
-            justify-content: start;
+            justify-content: flex-start;
             width: 150px;
 
             select {
@@ -86,7 +86,7 @@
         background-color: $primary-color;
         color: white;
         @include centerChildrenColumn();
-        justify-content: start;
+        justify-content: flex-start;
 
         hr {
             margin-top: 15%;

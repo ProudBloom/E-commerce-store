@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { orderDetailsAction, orderPaymentAction } from '../../actions/orderActions'
 import './OrderDetails.scss'
@@ -69,22 +69,19 @@ export default function OrderDetails(props) {
             case 'PayPal':
                 return (
                 <div>
-                    <div ref={paypalRef}></div>
-                    <p>PayPal button goes here</p>
+                    <div className="summ-button" ref={paypalRef}></div>
                 </div>
                 );
             case 'CreditCard': 
             return (
                 <div>
-                    <div ref={cardRef}></div>
-                    <p>Credit card button goes here</p>
+                    <div className="summ-button" ref={cardRef}></div>
                 </div>
             );
             case 'Przelewy24': 
             return (
                 <div>
-                    <div ref={przelewy24Ref}></div>
-                    <p>Przelewy24 button goes here</p>
+                    <div className="summ-button" ref={przelewy24Ref}></div>
                 </div>
             );
             default:
@@ -94,9 +91,9 @@ export default function OrderDetails(props) {
 
     const renderPaymentButton = (type, container) => {
         window.paypal.Buttons({
-            intent: 'CAPTURE',
             createOrder: (data, actions) => {
                 return actions.order.create({
+                    intent: 'CAPTURE',
                     purchase_units: [{
                         amount: { value: order.totalPrice }
                     }]
@@ -106,19 +103,18 @@ export default function OrderDetails(props) {
             onError: err => {
                 alert(err);
             },
+            style: { color: 'black' },
             fundingSource: type,
         }).render(container.current);
     }
 
     useEffect(() => {
 
-        //--CANT LOAD FAST ENOUGH? Script doesen't seem to load on time (same as order history)--
-
         // const addPayPalScript = async () => {
         //     const { data } = await axios.get('/api/config/paypal');
         //     const script = document.createElement('script');
         //     script.type = 'text/javascript';
-        //     script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+        //     script.src = `https://www.paypal.com/sdk/js?client-id=${data}&components=buttons,funding-eligibility`;
         //     script.async = true;
         //     script.defer = true;
 
@@ -190,7 +186,7 @@ export default function OrderDetails(props) {
                         <h1>items</h1>
                         {
                             order.orderItems.map((item, index) => (
-                            <ul>
+                            <ul key={index}>
                                 <li><img src={item.image} alt={item.name}/></li>
                                 <li><b>{item.name}</b></li>
                                 <li><p>{item.price}$</p></li>
@@ -212,6 +208,7 @@ export default function OrderDetails(props) {
                         {
                             !order.isPaid  && (
                                 <div className="summ-paypal">
+                                <h2>Pay with</h2>
                                     {
                                         paypalbuttonSwitch(order.paymentMethod)
                                     }

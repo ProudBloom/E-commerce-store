@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { orderDetailsAction, orderPaymentAction } from '../../actions/orderActions'
@@ -95,11 +94,16 @@ export default function OrderDetails(props) {
                 return actions.order.create({
                     intent: 'CAPTURE',
                     purchase_units: [{
+                        description: 'E-shoerr purchase',
                         amount: { value: order.totalPrice }
                     }]
                 })
             },
-            onApprove: () => dispatch(orderPaymentAction(order, 'success')),
+            onApprove: async (data, actions) => {
+                const paypalOrder = await actions.order.capture();
+                dispatch(orderPaymentAction(order, 'success'));
+                console.log(paypalOrder);
+            },
             onError: err => {
                 alert(err);
             },
@@ -145,7 +149,7 @@ export default function OrderDetails(props) {
         renderPaymentButton(window.paypal.FUNDING.CARD, cardRef);
         renderPaymentButton(window.paypal.FUNDING.P24, przelewy24Ref);
         
-    }, [dispatch, order, urlOrderId, paymentSuccess]);
+    }, [dispatch, order, paymentSuccess, urlOrderId]);
 
     return loading ? (<LoadingBox />) : 
             error ? (<ErrorMessageBox>{error}</ErrorMessageBox>) :

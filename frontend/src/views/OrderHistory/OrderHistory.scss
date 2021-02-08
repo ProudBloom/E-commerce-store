@@ -1,0 +1,36 @@
+@import '../../variables';
+@import '../../mixins';
+
+.orderhistory__wrapper {
+    padding: 35px;
+    @include centerChildren();
+
+    .orderhistory__table {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+        color: $primary-color;
+
+        .orderhistory__heading-row {
+            font-size: 1.2rem;
+        }
+
+        td, th {
+            padding: 15px;
+        }
+
+        tr:nth-child(2n-1) {
+            background-color: lighten($secondary-color, 20%);
+        }
+
+        th {
+            background-color: $secondary-color;
+            text-transform: uppercase;
+        }
+
+        .orderhistory__button {
+            @include buttonStyleActive(darken($primary-color, 10%), $secondary-color);
+            max-width: 150px;
+        }
+    }
+}

@@ -1,11 +1,11 @@
-import { PayPalButton } from 'react-paypal-button-v2'
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { orderDetailsAction, orderPaymentAction } from '../../actions/orderActions'
 import './OrderDetails.scss'
 import LoadingBox from '../../components/LoadingBox/LoadingBox'
 import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox'
-import axios from 'axios'
+// import axios from 'axios'
 import { ORDER_PAYMENT_RESET } from '../../constants/orderConstants'
 
 export default function OrderDetails(props) {
@@ -20,13 +20,19 @@ export default function OrderDetails(props) {
     const orderPayment = useSelector(state => state.orderPayment);
     const { error: paymentError, success: paymentSuccess } = orderPayment; //Rename error and success
 
+    const paypalRef = useRef();
+    const cardRef = useRef();
+    const przelewy24Ref = useRef();
 
-
-    const [paypalSdkReady, setPaypalSdkReady] = useState('');
+    // const [paypalSdkReady, setPaypalSdkReady] = useState('');
 
     if(!userInfo) {
         props.history.push('/signin');
     }
+
+    // const successPaymentHandler = (paymentResult) => {
+    //     dispatch(orderPaymentAction(order, paymentResult));
+    // }
 
     const paymentSwitch = (payment) => {
         switch(payment) {
@@ -63,21 +69,21 @@ export default function OrderDetails(props) {
             case 'PayPal':
                 return (
                 <div>
-                    <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} style={{ color: 'black' }}/>
+                    <div ref={paypalRef}></div>
                     <p>PayPal button goes here</p>
                 </div>
                 );
             case 'CreditCard': 
             return (
                 <div>
-                    <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} style={{ color: 'black' }} shippingPreference='SET_PROVIDED_ADDRESS'/>
+                    <div ref={cardRef}></div>
                     <p>Credit card button goes here</p>
                 </div>
             );
             case 'Przelewy24': 
             return (
                 <div>
-                    <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} style={{ color: 'black' }}/>
+                    <div ref={przelewy24Ref}></div>
                     <p>Przelewy24 button goes here</p>
                 </div>
             );
@@ -86,43 +92,64 @@ export default function OrderDetails(props) {
         }
     }
 
+    const renderPaymentButton = (type, container) => {
+        window.paypal.Buttons({
+            intent: 'CAPTURE',
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: { value: order.totalPrice }
+                    }]
+                })
+            },
+            onApprove: () => dispatch(orderPaymentAction(order, 'success')),
+            onError: err => {
+                alert(err);
+            },
+            fundingSource: type,
+        }).render(container.current);
+    }
+
     useEffect(() => {
-        const addPayPalScript = async () => {
-            const { data } = await axios.get('/api/config/paypal');
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
-            script.async = true;
 
-            script.onload = () => {
-                setPaypalSdkReady(true);
-            };
+        //--CANT LOAD FAST ENOUGH? Script doesen't seem to load on time (same as order history)--
 
-            document.body.appendChild(script);
-        };
+        // const addPayPalScript = async () => {
+        //     const { data } = await axios.get('/api/config/paypal');
+        //     const script = document.createElement('script');
+        //     script.type = 'text/javascript';
+        //     script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+        //     script.async = true;
+        //     script.defer = true;
+
+        //     script.onload = () => {
+        //         setPaypalSdkReady(true);
+        //     };
+
+        //     document.body.appendChild(script);
+        // };
 
         if(!order || paymentSuccess || (order && order._id !== urlOrderId)) {
             dispatch({ type: ORDER_PAYMENT_RESET })
             dispatch(orderDetailsAction(urlOrderId));
         }
 
-        else {
-            if(!order.isPaid) {
-                if(!window.paypal) {
-                    addPayPalScript();
-                }
-                else {
-                    setPaypalSdkReady(true);
-                }
-            }
-        }
+        // else {
+        //     if(!order.isPaid) {
+        //         if(!window.paypal) {
+        //             addPayPalScript();
+        //         }
+        //         else {
+        //             setPaypalSdkReady(true);
+        //         }
+        //     }
+        // }
 
-    }, [dispatch, order, urlOrderId, setPaypalSdkReady, paymentSuccess]);
-
-    
-    const successPaymentHandler = (paymentResult) => {
-        dispatch(orderPaymentAction(order, paymentResult));
-    }
+        renderPaymentButton(window.paypal.FUNDING.PAYPAL, paypalRef);
+        renderPaymentButton(window.paypal.FUNDING.CARD, cardRef);
+        renderPaymentButton(window.paypal.FUNDING.P24, przelewy24Ref);
+        
+    }, [dispatch, order, urlOrderId, paymentSuccess]);
 
     return loading ? (<LoadingBox />) : 
             error ? (<ErrorMessageBox>{error}</ErrorMessageBox>) :

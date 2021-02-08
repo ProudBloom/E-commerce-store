@@ -33,6 +33,7 @@ export default function OrderHistory(props) {
                     <tr className="orderhistory__heading-row">
                         <th>ID</th>
                         <th>Date</th>
+                        <th>Payment</th>
                         <th>Total</th>
                         <th>Paid</th>
                         <th>Delivered</th>
@@ -44,9 +45,10 @@ export default function OrderHistory(props) {
                                 <tr key={index}>
                                     <td>{item._id}</td>
                                     <td>{item.createdAt.substr(0, 10)}</td>
+                                    <td>{item.paymentMethod}</td>
                                     <td>{item.totalPrice.toFixed(2)}$</td>
                                     <td>{item.isPaid ? item.paidAt.substr(0, 10) : 'Not paid'}</td>
-                                    <td>{item.isDelivered ? item.deliveredAt.substr(0, 10) : 'Not paid'}</td>
+                                    <td>{item.isDelivered ? item.deliveredAt.substr(0, 10) : 'Not delivered'}</td>
                                     <td>
                                         <button type="button" className="orderhistory__button" onClick={() => props.history.push(`/order/${item._id}`)}>See details</button>
                                     </td>

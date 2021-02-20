@@ -6,6 +6,7 @@ import LoadingBox from '../../components/LoadingBox/LoadingBox'
 import ErrorMessageBox from '../../components/ErrorMessageBox/ErrorMessageBox'
 // import axios from 'axios'
 import { ORDER_PAYMENT_RESET } from '../../constants/orderConstants'
+import { productUpdateStockAction } from '../../actions/productActions'
 
 export default function OrderDetails(props) {
 
@@ -23,15 +24,9 @@ export default function OrderDetails(props) {
     const cardRef = useRef();
     const przelewy24Ref = useRef();
 
-    // const [paypalSdkReady, setPaypalSdkReady] = useState('');
-
     if(!userInfo) {
         props.history.push('/signin');
     }
-
-    // const successPaymentHandler = (paymentResult) => {
-    //     dispatch(orderPaymentAction(order, paymentResult));
-    // }
 
     const paymentSwitch = (payment) => {
         switch(payment) {
@@ -89,6 +84,7 @@ export default function OrderDetails(props) {
     }
 
     const renderPaymentButton = (type, container) => {
+
         window.paypal.Buttons({
             createOrder: (data, actions) => {
                 return actions.order.create({
@@ -100,8 +96,15 @@ export default function OrderDetails(props) {
                 })
             },
             onApprove: async (data, actions) => {
+                const { orderItems } = order;
                 const paypalOrder = await actions.order.capture();
+
                 dispatch(orderPaymentAction(order, 'success'));
+
+                for(const orderedItem of orderItems) {
+                    dispatch(productUpdateStockAction(orderedItem, orderedItem.quantity));
+                };
+
                 console.log(paypalOrder);
             },
             onError: err => {
@@ -114,42 +117,27 @@ export default function OrderDetails(props) {
 
     useEffect(() => {
 
-        // const addPayPalScript = async () => {
-        //     const { data } = await axios.get('/api/config/paypal');
-        //     const script = document.createElement('script');
-        //     script.type = 'text/javascript';
-        //     script.src = `https://www.paypal.com/sdk/js?client-id=${data}&components=buttons,funding-eligibility`;
-        //     script.async = true;
-        //     script.defer = true;
-
-        //     script.onload = () => {
-        //         setPaypalSdkReady(true);
-        //     };
-
-        //     document.body.appendChild(script);
-        // };
-
         if(!order || paymentSuccess || (order && order._id !== urlOrderId)) {
             dispatch({ type: ORDER_PAYMENT_RESET })
             dispatch(orderDetailsAction(urlOrderId));
         }
-
-        // else {
-        //     if(!order.isPaid) {
-        //         if(!window.paypal) {
-        //             addPayPalScript();
-        //         }
-        //         else {
-        //             setPaypalSdkReady(true);
-        //         }
-        //     }
-        // }
 
         renderPaymentButton(window.paypal.FUNDING.PAYPAL, paypalRef);
         renderPaymentButton(window.paypal.FUNDING.CARD, cardRef);
         renderPaymentButton(window.paypal.FUNDING.P24, przelewy24Ref);
         
     }, [dispatch, order, paymentSuccess, urlOrderId]);
+
+
+    const func = () => {
+        const { orderItems } = order;
+
+        for(const item of orderItems) {
+            console.log(item.name);
+            console.log(item.product);
+            console.log(item.quantity);
+        };
+    }
 
     return loading ? (<LoadingBox />) : 
             error ? (<ErrorMessageBox>{error}</ErrorMessageBox>) :
@@ -223,6 +211,7 @@ export default function OrderDetails(props) {
                 </div>
                 {paymentError && <div className="summary__payment-error"><p>{paymentError}</p></div>}
             </div>
+            <button onClick={() => func()}>ORDER ITEMS</button>
         </div>
     )
 }

@@ -14,7 +14,7 @@ export const generateToken = (user) => {
     });
 };
 
-export const isUserAuthenticared = (req, res, next) => {
+export const isUserAuthenticated = (req, res, next) => {
     const authorization = req.headers.authorization;
     if(authorization) {
             //Get quth token from request, Auth header format: Bearer XXXXX
@@ -35,3 +35,8 @@ export const isUserAuthenticared = (req, res, next) => {
         res.status(401).send({ message: 'User authorization token does not exist.' });
     }
 };
+
+export const checkStock = (req, res, next) => {
+    // TODO :
+    console.log('DATABASE PESIMISTIC LOCK');
+}
